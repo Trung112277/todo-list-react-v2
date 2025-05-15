@@ -5,7 +5,7 @@ export function PageMainDirectory() {
   }, []);
   return (
     <div>
-      <h1>Main Directory</h1>
+      <h1 className="text-2xl font-bold text-red-500">Main Directory</h1>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { PageMainDirectory } from './main-directory';
+import { PageMainDirectory } from './mainDirectory';
 
 export function DirectoryTasks() {
   return (

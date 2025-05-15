@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
+import { StatusTitle } from '@/components/feature/title/statusTitle';
 export function PageTodayTasks() {
   useEffect(() => {
-    document.title = "To-Do List | Today Tasks";
+    document.title = 'To-Do List | Today Tasks';
   }, []);
-  return (
-    <div>
-      <h1>Today Tasks</h1>
-    </div>
-  );
+  return <StatusTitle />
 }

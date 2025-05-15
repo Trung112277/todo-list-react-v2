@@ -6,7 +6,7 @@ export function PageAllTasks() {
   }, []);
   return (
     <div>
-      <h1 className="text-2xl font-bold text-red-500">Todo List</h1>
+      <h1 className="text-2xl font-bold text-red-500">All Tasks</h1>
     </div>
   );
 }

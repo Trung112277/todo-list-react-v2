@@ -4,8 +4,6 @@ export function PageCompletedTasks() {
     document.title = "To-Do List | Completed Tasks";
   }, []);
   return (
-    <div>
-      <h1>Completed Tasks</h1>
-    </div>
+    <h1 className="text-2xl font-bold text-red-500">Completed Tasks</h1>
   );
 }
