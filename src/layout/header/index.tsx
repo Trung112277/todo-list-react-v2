@@ -1,4 +1,4 @@
 export function Header({ children }: { children: React.ReactNode }) {
-  return <header>{children}</header>;
+  return <header >{children}</header>;
 }
 
