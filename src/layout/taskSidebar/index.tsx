@@ -1,6 +1,8 @@
 import { HeadingTitle } from '@/components/feature/title/headingTitle';
 import { Header } from '../header';
 import { ButtonAddTask } from '@/components/feature/buttonAddTask';
+import TaskStatusNav from '@/components/feature/taskStatusNav';
+import { taskStatuses } from '@/constants/taskStatuses';
 
 export function TaskSidebar() {
   return (
@@ -8,9 +10,10 @@ export function TaskSidebar() {
       <Header>
         <HeadingTitle />
       </Header>
-      <div className='my-8 mx-4'>
+      <div className="my-8 mx-4">
         <ButtonAddTask />
       </div>
+      <TaskStatusNav statuses={taskStatuses} />
     </aside>
   );
 }

@@ -1,3 +1,5 @@
-export function SubTitle() {
-    return <h2 className="font-medium mb-5 text-lg md:text-2xl">Sub Title</h2>
+import { cn } from "@/lib/utils";
+
+export function SubTitle({ children, className }: { children: React.ReactNode, className?: string }) {
+    return <h2 className={cn("font-medium mb-5 text-lg md:text-2xl", className)}>{children}</h2>
 }
