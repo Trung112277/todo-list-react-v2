@@ -3,6 +3,7 @@ import { Header } from '../header';
 import { ButtonAddTask } from '@/components/feature/buttonAddTask';
 import TaskStatusNav from '@/components/feature/taskStatusNav';
 import { taskStatuses } from '@/constants/taskStatuses';
+import Directories from '@/components/feature/directories';
 
 export function TaskSidebar() {
   return (
@@ -14,6 +15,8 @@ export function TaskSidebar() {
         <ButtonAddTask />
       </div>
       <TaskStatusNav statuses={taskStatuses} />
+      <hr className="my-2" />
+      <Directories />
     </aside>
   );
 }

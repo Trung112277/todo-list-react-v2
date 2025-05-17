@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "./navlink";
+import { NavLink } from "@/components/feature/navlink";
 import type { StatusType } from "@/types/taskStatus";
 
 interface TaskStatusNavProps {
