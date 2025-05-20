@@ -15,7 +15,6 @@ export function TaskSidebar() {
         <ButtonAddTask />
       </div>
       <TaskStatusNav statuses={taskStatuses} />
-      <hr className="my-2" />
       <Directories />
     </aside>
   );

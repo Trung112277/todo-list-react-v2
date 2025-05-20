@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { Directory } from "@/types/directory";
-import { directories as mockDirectories } from '@/constants/directory';
+import { directories as mockDirectories } from '@/constants/directories';
 import { FaFolder } from "react-icons/fa";
 import { NavLink } from "@/components/feature/navlink";
 
@@ -23,8 +23,10 @@ export function NavLinkDirectory({ directories }: NavLinkDirectoryProps) {
       to={dir.path}
     >
       <div className="flex items-center gap-2">
-        <FaFolder  size={16} />
-        <span className="text-base">{dir.name}</span>
+        <div className="min-w-[16px] min-h-[16px]">
+          <FaFolder size={16} />
+        </div>
+        <span className="text-base line-clamp-1">{dir.name}</span>
       </div>
     </NavLink>
   )), [dirs]);
