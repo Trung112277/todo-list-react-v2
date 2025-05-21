@@ -1,4 +1,4 @@
-import { StatusTitle } from '@/components/feature/title/statusTitle';
+import { StatusTitle } from '@/components/common/title/statusTitle';
 import { useEffect } from 'react';
 export function PageUncompletedTasks() {
   useEffect(() => {

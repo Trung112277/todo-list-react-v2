@@ -1,4 +1,4 @@
-import { HeadingTitle } from '@/components/feature/title/headingTitle';
+import { HeadingTitle } from '@/components/common/title/headingTitle';
 import { Header } from '../header';
 import { ButtonAddTask } from '@/components/feature/buttonAddTask';
 import TaskStatusNav from '@/components/feature/taskStatusNav';

@@ -1,4 +1,4 @@
-import { SubTitle } from '../../title/subTitle';
+import { SubTitle } from '../../../common/title/subTitle';
 import { AddNewDirectoryButton } from './addNewDirectoryButton';
 import {
   Dialog,
