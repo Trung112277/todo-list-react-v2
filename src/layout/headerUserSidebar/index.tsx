@@ -1,5 +1,5 @@
-import { UserAvatar } from '../userAvatar';
-import { UserTitle } from '../title/userTitle';
+import { UserAvatar } from '../../components/common/userAvatar';
+import { UserTitle } from '../../components/common/title/userTitle';
 
 export function HeaderUserSidebar() {
   return (

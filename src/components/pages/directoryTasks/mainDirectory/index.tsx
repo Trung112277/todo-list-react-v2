@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import { usePageTitle } from '@/hooks/usePageTitle';
+
 export function PageMainDirectory() {
-  useEffect(() => {
-    document.title = "To-Do List | Main Directory";
-  }, []);
+  usePageTitle('Main Directory');
   return (
     <div>
       <h1 className="text-2xl font-bold text-red-500">Main Directory</h1>

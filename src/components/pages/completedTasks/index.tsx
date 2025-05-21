@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 export function PageCompletedTasks() {
-  useEffect(() => {
-    document.title = "To-Do List | Completed Tasks";
-  }, []);
+  usePageTitle('Completed Tasks');
   return (
     <h1 className="text-2xl font-bold text-red-500">Completed Tasks</h1>
   );

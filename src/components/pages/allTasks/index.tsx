@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export function PageAllTasks() {
-  useEffect(() => {
-    document.title = "To-Do List | All Tasks";
-  }, []);
+  usePageTitle('All Tasks');
   return (
     <div>
       <h1 className="text-2xl font-bold text-red-500">All Tasks</h1>

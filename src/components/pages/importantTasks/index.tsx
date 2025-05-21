@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 import { StatusTitle } from '@/components/common/title/statusTitle';
 export function PageImportantTasks() {
-  useEffect(() => {
-    document.title = 'To-Do List | Important Tasks';
-  }, []);
+  usePageTitle('Important Tasks');
   return <StatusTitle />;
 }

@@ -1,8 +1,6 @@
 import { StatusTitle } from '@/components/common/title/statusTitle';
-import { useEffect } from 'react';
+import { usePageTitle } from '@/hooks/usePageTitle';
 export function PageUncompletedTasks() {
-  useEffect(() => {
-    document.title = 'To-Do List | Uncompleted Tasks';
-  }, []);
+  usePageTitle('Uncompleted Tasks');
   return <StatusTitle />;
 }
