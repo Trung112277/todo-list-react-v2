@@ -11,7 +11,7 @@ export function MainLayout() {
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse facere
           repellendus vero dignissimos, officia architecto nostrum blanditiis?
-          Rerum, ipsa debitis.
+          Rerum, ipsa debitis.\
         </p>
         <Outlet />
       </MainContent>
