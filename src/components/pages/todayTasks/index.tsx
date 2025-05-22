@@ -3,5 +3,5 @@ import { StatusTitle } from '@/components/common/title/statusTitle';
 
 export function PageTodayTasks() {
   usePageTitle('Today Tasks');
-  return <StatusTitle />
+  return <StatusTitle title="Today Tasks" />
 }
