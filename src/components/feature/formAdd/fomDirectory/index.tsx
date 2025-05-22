@@ -1,7 +1,11 @@
 import { ButtonForm } from '../buttonForm';
 import { InputForm } from '../inputForm';
 
-export function FormAddDirectory() {
+interface FormDirectoryProps {
+  buttonText: string;
+}
+
+export function FormDirectory({ buttonText }: FormDirectoryProps) {
   return (
     <div className='flex flex-col gap-4'>
       <InputForm
@@ -9,7 +13,7 @@ export function FormAddDirectory() {
         placeholder="Enter a directory name"
         type="text"
       />
-      <ButtonForm className="w-fit">Create Directory</ButtonForm>
+      <ButtonForm className="w-fit">{buttonText}</ButtonForm>
     </div>
   );
 }

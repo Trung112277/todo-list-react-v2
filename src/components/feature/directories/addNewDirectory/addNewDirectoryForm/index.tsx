@@ -1,5 +1,5 @@
-import { FormAddDirectory } from '@/components/feature/formAdd/fomAddDirectory';
+import { FormDirectory } from '@/components/feature/formAdd/fomDirectory';
 
 export function AddNewDirectoryForm() {
-  return <FormAddDirectory />;
+  return <FormDirectory buttonText="Create Directory" />;
 }

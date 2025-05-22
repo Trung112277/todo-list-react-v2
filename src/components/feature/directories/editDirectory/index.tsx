@@ -1,30 +1,27 @@
 import { SubTitle } from '../../../common/title/subTitle';
-import { AddNewDirectoryButton } from './addNewDirectoryButton';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { AddNewDirectoryForm } from './addNewDirectoryForm';
+import { EditDirectoryButton } from './editDirectoryButton';
+import { EditDirectoryForm } from './editDirectoryForm';
 
-export function AddNewDirectory() {
+export function EditDirectory() {
   return (
     <Dialog>
       <DialogTrigger>
-        <AddNewDirectoryButton />
+        <EditDirectoryButton />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            <SubTitle>Create new directory</SubTitle>
+            <SubTitle>Edit directory</SubTitle>
           </DialogTitle>
-          <DialogDescription>
-            <AddNewDirectoryForm />
-          </DialogDescription>
         </DialogHeader>
+        <EditDirectoryForm />
       </DialogContent>
     </Dialog>
   );
