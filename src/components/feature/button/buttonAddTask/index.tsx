@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Dialog } from '@/components/ui/dialog';
-import { SubTitle } from '../../common/title/subTitle';
-import { FormAddTask } from '../formAdd/formAddTask';
+import { SubTitle } from '@/components/common/title/subTitle';
+import { FormTask } from '@/components/feature/formAdd/formTask';
 
 export function ButtonAddTask() {
 
@@ -17,7 +17,7 @@ export function ButtonAddTask() {
             <SubTitle>Add a task</SubTitle>
           </DialogTitle>
         </DialogHeader>
-        <FormAddTask />
+        <FormTask name="Add new task" />
       </DialogContent>
     </Dialog>
   );

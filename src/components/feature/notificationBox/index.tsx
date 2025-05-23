@@ -1,5 +1,5 @@
 import { Notification } from './notification';
-import { ButtonAddTask } from '../buttonAddTask';
+import { ButtonAddTask } from '@/components/feature/button/buttonAddTask';
 export function NotificationBox() {
   return (
     <div className="flex items-center gap-5">

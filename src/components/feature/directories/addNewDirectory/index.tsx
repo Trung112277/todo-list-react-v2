@@ -3,7 +3,6 @@ import { AddNewDirectoryButton } from './addNewDirectoryButton';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -21,10 +20,8 @@ export function AddNewDirectory() {
           <DialogTitle>
             <SubTitle>Create new directory</SubTitle>
           </DialogTitle>
-          <DialogDescription>
-            <AddNewDirectoryForm />
-          </DialogDescription>
         </DialogHeader>
+        <AddNewDirectoryForm />
       </DialogContent>
     </Dialog>
   );

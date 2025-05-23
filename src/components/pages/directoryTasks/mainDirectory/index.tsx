@@ -3,6 +3,6 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 export function PageMainDirectory() {
   usePageTitle('Main Directory');
   return (
-    <StatusTitle title="Main Directory" />
+    <StatusTitle title="Main's Tasks" />
   );
 }

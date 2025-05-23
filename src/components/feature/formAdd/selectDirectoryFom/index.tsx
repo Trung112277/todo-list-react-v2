@@ -16,7 +16,7 @@ export function SelectForm({ title }: { title: string }) {
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className='border-none'>
             <SelectItem value="1">1</SelectItem>
             <SelectItem value="2">2</SelectItem>
             <SelectItem value="3">3</SelectItem>

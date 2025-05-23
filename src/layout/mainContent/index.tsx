@@ -1,6 +1,7 @@
 import { HeaderMainContent } from '@/layout/headerMainContent';
 import { Outlet } from 'react-router-dom';
 import { ActionsBox } from '../actionsBox';
+import { TasksList } from '@/components/feature/tasksList';
 
 export function MainContent() {
   return (
@@ -8,6 +9,7 @@ export function MainContent() {
       <HeaderMainContent />
       <Outlet />
       <ActionsBox />
+      <TasksList />
     </main>
   );
 }
