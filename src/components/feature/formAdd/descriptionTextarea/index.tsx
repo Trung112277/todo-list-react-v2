@@ -1,12 +1,28 @@
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-export function DescriptionTextarea({ title }: { title: string }) {
-  return (
-    <div>
-      <Label className="flex flex-col gap-2 text-lg text-gray-600">
-        {title}
-        <Textarea placeholder="e.g, study for the test" />
-      </Label>
-    </div>
-  );
+import { Label } from '@/components/ui/label';
+import { forwardRef } from 'react';
+
+interface DescriptionTextareaProps {
+  title: string;
+  error?: string;
 }
+
+export const DescriptionTextarea = forwardRef<HTMLTextAreaElement, DescriptionTextareaProps & React.TextareaHTMLAttributes<HTMLTextAreaElement>>(
+  ({ title, error, ...props }, ref) => {
+    return (
+      <div className="space-y-2">
+        <Label className="text-lg text-gray-600">
+          {title}
+        </Label>
+        <Textarea 
+          ref={ref}
+          className={error ? "border-red-500" : ""}
+          {...props}
+        />
+        {error && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+      </div>
+    );
+  }
+);

@@ -3,11 +3,13 @@ import { DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/compo
 import { Dialog } from '@/components/ui/dialog';
 import { SubTitle } from '@/components/common/title/subTitle';
 import { FormTask } from '@/components/feature/formAdd/formTask';
+import { useTaskDialog } from '@/hooks/useTaskDialog';
 
 export function ButtonAddTask() {
+  const { isOpen, openDialog, closeDialog } = useTaskDialog();
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={(open) => open ? openDialog() : closeDialog()}>
       <DialogTrigger asChild>
         <Button>Add new task</Button>
       </DialogTrigger>

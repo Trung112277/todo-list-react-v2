@@ -16,7 +16,7 @@ export function TaskItemStatus({ taskId, isCompleted }: TaskItemStatusProps) {
   return (
     <Button
       onClick={handleClick}
-      className={`mr-4 order-0 rounded-full font-medium ${
+      className={`order-0 rounded-full font-medium h-8 ${
         isCompleted
           ? 'bg-emerald-200 text-emerald-800'
           : 'bg-amber-200 text-amber-800'

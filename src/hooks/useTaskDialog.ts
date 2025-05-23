@@ -1,14 +1,5 @@
-import { useState } from 'react';
+import { useDialog } from '@/contexts/dialog/context';
 
 export function useTaskDialog() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openDialog = () => setIsOpen(true);
-  const closeDialog = () => setIsOpen(false);
-
-  return {
-    isOpen,
-    openDialog,
-    closeDialog,
-  };
+  return useDialog();
 } 
