@@ -1,5 +1,5 @@
 import { Task } from '@/types/task';
-import { taskActions } from './actions';
+import { taskActions } from './actionCreators';
 
 export type TaskAction =
   | { type: 'ADD_TASK'; payload: Omit<Task, 'id' | 'createdAt' | 'updatedAt'> }

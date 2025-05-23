@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { TaskItemStatus } from './taskItemStatus';
 import { TaskItemActions } from './taskItemActions';
 import { useTask } from '@/contexts/task';
@@ -6,9 +7,9 @@ interface TaskItemPropertiesProps {
   taskId: string;
 }
 
-export function TaskItemProperties({ taskId }: TaskItemPropertiesProps) {
-  const { tasks } = useTask();
-  const task = tasks.find(t => t.id === taskId);
+function TaskItemPropertiesComponent({ taskId }: TaskItemPropertiesProps) {
+  const { tasksMap } = useTask();
+  const task = tasksMap.get(taskId);
 
   if (!task) return null;
 
@@ -19,3 +20,5 @@ export function TaskItemProperties({ taskId }: TaskItemPropertiesProps) {
     </div>
   );
 }
+
+export const TaskItemProperties = memo(TaskItemPropertiesComponent);
