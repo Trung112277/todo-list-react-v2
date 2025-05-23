@@ -1,10 +1,15 @@
 import { BadgeTask } from './badgeTask';
 import { TaskItemContent } from './taskItemContent';
-export function TaskListItem() {
+
+interface TaskListItemProps {
+  taskId: string;
+}
+
+export function TaskListItem({ taskId }: TaskListItemProps) {
   return (
     <li>
-      <BadgeTask />
-      <TaskItemContent />
+      <BadgeTask taskId={taskId} />
+      <TaskItemContent taskId={taskId} />
     </li>
   );
 }

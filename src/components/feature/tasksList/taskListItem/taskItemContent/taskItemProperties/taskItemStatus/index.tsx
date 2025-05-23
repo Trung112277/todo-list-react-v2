@@ -1,17 +1,22 @@
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useTask } from '@/contexts/task';
 
-export function TaskItemStatus() {
-  const [isCompleted, setIsCompleted] = useState(false);
+interface TaskItemStatusProps {
+  taskId: string;
+  isCompleted: boolean;
+}
+
+export function TaskItemStatus({ taskId, isCompleted }: TaskItemStatusProps) {
+  const { toggleTaskStatus } = useTask();
 
   const handleClick = () => {
-    setIsCompleted(!isCompleted);
+    toggleTaskStatus(taskId);
   };
 
   return (
     <Button
       onClick={handleClick}
-      className={`rounded-full font-medium p-0 h-8 hover:brightness-95 transition-all duration-300 ${
+      className={`mr-4 order-0 rounded-full font-medium ${
         isCompleted
           ? 'bg-emerald-200 text-emerald-800'
           : 'bg-amber-200 text-amber-800'
