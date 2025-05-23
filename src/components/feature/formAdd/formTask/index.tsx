@@ -9,7 +9,7 @@ import { ImportantCheckbox } from '../importantCheckbox';
 import { SelectForm } from '../selectDirectoryFom';
 import { useTask } from '@/contexts/task';
 import { useLoading } from '@/contexts/loading/context';
-import { useTaskDialog } from '@/hooks/useTaskDialog';
+import { useDialog } from '@/contexts/dialog/context';
 
 function getTodayString() {
   const today = new Date();
@@ -20,13 +20,14 @@ function getTodayString() {
 }
 
 interface FormTaskProps {
-  name: string;
+  taskId?: string;
 }
 
-export function FormTask({ name }: FormTaskProps) {
-  const { addTask } = useTask();
+export function FormTask({ taskId }: FormTaskProps) {
+  const { addTask, updateTask, tasksMap } = useTask();
   const { setIsLoading } = useLoading();
-  const { closeDialog } = useTaskDialog();
+  const { closeDialog } = useDialog();
+  const task = taskId ? tasksMap.get(taskId) : undefined;
 
   const {
     register,
@@ -38,9 +39,11 @@ export function FormTask({ name }: FormTaskProps) {
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskFormSchema),
     defaultValues: {
-      isImportant: false,
-      isCompleted: false,
-      dueDate: getTodayString(),
+      title: task?.title || '',
+      description: task?.description || '',
+      dueDate: task?.dueDate || getTodayString(),
+      isImportant: task?.isImportant || false,
+      isCompleted: task?.isCompleted || false,
     },
   });
 
@@ -53,11 +56,15 @@ export function FormTask({ name }: FormTaskProps) {
   const onSubmit = async (data: TaskFormData) => {
     setIsLoading(true);
     try {
-      await addTask(data);
+      if (taskId) {
+        await updateTask(taskId, data);
+      } else {
+        await addTask(data);
+      }
       closeDialog();
       reset();
     } catch (error) {
-      console.error('Error adding task:', error);
+      console.error('Error handling task:', error);
     } finally {
       setIsLoading(false);
     }
@@ -88,7 +95,7 @@ export function FormTask({ name }: FormTaskProps) {
         onChange={handleImportantChange}
         error={errors.isImportant?.message}
       />
-      <ButtonForm>{name}</ButtonForm>
+      <ButtonForm>{taskId ? 'Update Task' : 'Add Task'}</ButtonForm>
     </form>
   );
 }

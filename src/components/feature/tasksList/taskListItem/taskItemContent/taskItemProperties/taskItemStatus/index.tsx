@@ -1,13 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { useTask } from '@/contexts/task';
+import { useTaskItemId } from '@/contexts/taskItem/context';
 
 interface TaskItemStatusProps {
-  taskId: string;
   isCompleted: boolean;
 }
 
-export function TaskItemStatus({ taskId, isCompleted }: TaskItemStatusProps) {
+export function TaskItemStatus({ isCompleted }: TaskItemStatusProps) {
   const { toggleTaskStatus } = useTask();
+  const taskId = useTaskItemId();
 
   const handleClick = () => {
     toggleTaskStatus(taskId);

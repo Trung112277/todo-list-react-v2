@@ -1,13 +1,11 @@
 import { TaskListItem } from '@/components/feature/tasksList/taskListItem';
 import { TaskItemSkeleton } from '@/components/feature/tasksList/taskListItem/taskItemSkeleton';
 import { useLoading } from '@/contexts/loading/context';
+import { useTaskItemId } from '@/contexts/taskItem/context';
 
-interface TaskItemProps {
-  taskId: string;
-}
-
-export function TaskItem({ taskId }: TaskItemProps) {
+export function TaskItem() {
   const { isLoading } = useLoading();
+  const taskId = useTaskItemId();
 
   return (
     <div 

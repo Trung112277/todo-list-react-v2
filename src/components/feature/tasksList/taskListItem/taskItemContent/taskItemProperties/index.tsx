@@ -1,22 +1,15 @@
 import { memo } from 'react';
 import { TaskItemStatus } from './taskItemStatus';
 import { TaskItemActions } from './taskItemActions';
-import { useTask } from '@/contexts/task';
+import { useTaskItemContent } from '@/contexts/taskItemContent/context';
 
-interface TaskItemPropertiesProps {
-  taskId: string;
-}
-
-function TaskItemPropertiesComponent({ taskId }: TaskItemPropertiesProps) {
-  const { tasksMap } = useTask();
-  const task = tasksMap.get(taskId);
-
-  if (!task) return null;
+function TaskItemPropertiesComponent() {
+  const { task } = useTaskItemContent();
 
   return (
     <div className="flex gap-4 border-dashed border-slate-200 dark:border-slate-700/[.3] border-t-2 w-full pt-4 mt-4 justify-between items-center">
-      <TaskItemStatus taskId={taskId} isCompleted={task.isCompleted} />
-      <TaskItemActions taskId={taskId} />
+      <TaskItemStatus isCompleted={task.isCompleted} />
+      <TaskItemActions />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { SubTitle } from '@/components/common/title/subTitle';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,30 +7,34 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { TaskItemDeleteButton } from './taskItemDeleteButton';
+import { useTask } from '@/contexts/task';
+import { useTaskItemId } from '@/contexts/taskItem/context';
 
 export function TaskItemDelete() {
+  const { deleteTask } = useTask();
+  const taskId = useTaskItemId();
+
+  const handleDelete = () => {
+    deleteTask(taskId);
+  };
+
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <TaskItemDeleteButton />
-      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            <SubTitle>Are you sure?</SubTitle>
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-lg text-gray-600">
-            This task will be deleted permanently.
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your task.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="w-fit">Confirm</AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
+      <TaskItemDeleteButton />
     </AlertDialog>
   );
 }

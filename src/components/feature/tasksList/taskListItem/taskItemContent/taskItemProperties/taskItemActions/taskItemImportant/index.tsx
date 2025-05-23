@@ -1,13 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { IoStar } from 'react-icons/io5';
 import { useTask } from '@/contexts/task';
+import { useTaskItemId } from '@/contexts/taskItem/context';
 
-interface TaskItemImportantProps {
-  taskId: string;
-}
-
-export function TaskItemImportant({ taskId }: TaskItemImportantProps) {
+export function TaskItemImportant() {
   const { tasksMap, toggleTaskImportant } = useTask();
+  const taskId = useTaskItemId();
   const task = tasksMap.get(taskId);
 
   if (!task) return null; // Don't render if task not found

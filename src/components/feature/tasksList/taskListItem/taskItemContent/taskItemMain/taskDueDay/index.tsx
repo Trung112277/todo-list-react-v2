@@ -1,15 +1,8 @@
-import { useTask } from '@/contexts/task';
+import { useTaskItemContent } from '@/contexts/taskItemContent/context';
 import { FaCalendarDays } from 'react-icons/fa6';
 
-interface TaskDueDayProps {
-  taskId: string;
-}
-
-export function TaskDueDay({ taskId }: TaskDueDayProps) {
-  const { tasks } = useTask();
-  const task = tasks.find(t => t.id === taskId);
-
-  if (!task) return null;
+export function TaskDueDay() {
+  const { task } = useTaskItemContent();
 
   // Ensure dueDate is a Date object from the string
   const dueDateObj = new Date(task.dueDate);

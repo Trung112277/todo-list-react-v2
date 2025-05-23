@@ -1,14 +1,7 @@
-import { useTask } from '@/contexts/task';
+import { useTaskItemContent } from '@/contexts/taskItemContent/context';
 
-interface TaskDescriptionProps {
-  taskId: string;
-}
-
-export function TaskDescription({ taskId }: TaskDescriptionProps) {
-  const { tasks } = useTask();
-  const task = tasks.find(t => t.id === taskId);
-
-  if (!task) return null;
+export function TaskDescription() {
+  const { task } = useTaskItemContent();
 
   return (
     <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">

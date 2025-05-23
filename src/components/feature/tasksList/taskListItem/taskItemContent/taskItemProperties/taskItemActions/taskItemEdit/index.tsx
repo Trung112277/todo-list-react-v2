@@ -8,8 +8,11 @@ import { Dialog } from '@/components/ui/dialog';
 import { SubTitle } from '@/components/common/title/subTitle';
 import { FormTask } from '@/components/feature/formAdd/formTask';
 import { TaskItemEditButton } from './taskItemEditButton';
+import { useTaskItemId } from '@/contexts/taskItem/context';
 
 export function TaskItemEdit() {
+  const taskId = useTaskItemId();
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -21,7 +24,7 @@ export function TaskItemEdit() {
             <SubTitle>Edit task</SubTitle>
           </DialogTitle>
         </DialogHeader>
-        <FormTask name="Edit task" />
+        <FormTask taskId={taskId} />
       </DialogContent>
     </Dialog>
   );

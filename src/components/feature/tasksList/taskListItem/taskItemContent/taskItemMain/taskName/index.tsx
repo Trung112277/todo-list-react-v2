@@ -1,14 +1,8 @@
 import { memo } from 'react';
-import { useTaskById } from '@/hooks/useTaskById';
+import { useTaskItemContent } from '@/contexts/taskItemContent/context';
 
-interface TaskNameProps {
-  taskId: string;
-}
-
-function TaskNameComponent({ taskId }: TaskNameProps) {
-  const task = useTaskById(taskId);
-
-  if (!task) return null;
+function TaskNameComponent() {
+  const { task } = useTaskItemContent();
 
   return (
     <h3 className="text-lg font-medium text-slate-700 dark:text-slate-200">
