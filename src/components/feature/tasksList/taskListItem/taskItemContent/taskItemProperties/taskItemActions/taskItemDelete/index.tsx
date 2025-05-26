@@ -9,16 +9,10 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { TaskItemDeleteButton } from './taskItemDeleteButton';
-import { useTask } from '@/contexts/task';
-import { useTaskItemId } from '@/contexts/taskItem/context';
+import { TaskItemDeleteProvider, useTaskItemDelete } from '@/contexts/taskItemDelete/context';
 
-export function TaskItemDelete() {
-  const { deleteTask } = useTask();
-  const taskId = useTaskItemId();
-
-  const handleDelete = () => {
-    deleteTask(taskId);
-  };
+function TaskItemDeleteContent() {
+  const { handleDelete } = useTaskItemDelete();
 
   return (
     <AlertDialog>
@@ -31,10 +25,18 @@ export function TaskItemDelete() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete} className='w-fit'>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
       <TaskItemDeleteButton />
     </AlertDialog>
+  );
+}
+
+export function TaskItemDelete() {
+  return (
+    <TaskItemDeleteProvider>
+      <TaskItemDeleteContent />
+    </TaskItemDeleteProvider>
   );
 }
