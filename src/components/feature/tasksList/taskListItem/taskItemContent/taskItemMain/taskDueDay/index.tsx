@@ -1,8 +1,14 @@
 import { useTaskItemContent } from '@/contexts/taskItemContent/context';
 import { FaCalendarDays } from 'react-icons/fa6';
+import { useTask } from '@/contexts/task';
+import { useTaskItemId } from '@/contexts/taskItem/context';
+import { cn } from '@/lib/utils';
 
 export function TaskDueDay() {
   const { task } = useTaskItemContent();
+  const taskId = useTaskItemId();
+  const { tasks } = useTask();
+  const isFirstTask = tasks[0]?.id === taskId;
 
   // Ensure dueDate is a Date object from the string
   const dueDateObj = new Date(task.dueDate);
@@ -15,7 +21,12 @@ export function TaskDueDay() {
 
   return (
     <time
-      className="mt-auto flex w-full items-center gap-2 text-md text-slate-500 dark:text-slate-400"
+      className={cn(
+        "mt-auto flex w-full items-center gap-2 text-md",
+        isFirstTask 
+          ? "text-white/90" 
+          : "text-slate-500 dark:text-slate-400"
+      )}
       dateTime={dueDateObj.toISOString().split('T')[0]}
     >
       <FaCalendarDays />

@@ -9,7 +9,7 @@ export function TaskListItem({ taskId }: TaskListItemProps) {
   return (
     <li>
       <BadgeTask taskId={taskId} />
-      <TaskItemContent taskId={taskId} />
-    </li>
+      <TaskItemContent />
+    </li> 
   );
 }
