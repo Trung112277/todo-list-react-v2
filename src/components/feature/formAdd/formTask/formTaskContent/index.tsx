@@ -5,6 +5,8 @@ import { DescriptionTextarea } from '../../descriptionTextarea';
 import { ImportantCheckbox } from '@/components/feature/formAdd/importantCheckbox';
 import { SelectForm } from '../../selectDirectoryFom';
 import { useTaskForm } from '@/contexts/taskForm/context';
+import { FORM_LABELS, FORM_PLACEHOLDERS, FORM_TITLES } from '@/constants/form';
+import { TASK_FORM_STYLES } from '@/constants/taskFormStyle';
 
 export function TaskForm() {
   const {
@@ -18,31 +20,31 @@ export function TaskForm() {
   } = useTaskForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className={TASK_FORM_STYLES.CONTAINER}>
       <InputForm
-        title="Title"
-        placeholder="e.g, study for the test"
+        title={FORM_LABELS.TITLE}
+        placeholder={FORM_PLACEHOLDERS.TITLE}
         type="text"
         error={errors.title?.message}
         {...register('title')}
       />
       <DateInput 
-        title="Date" 
+        title={FORM_LABELS.DATE}
         error={errors.dueDate?.message}
         {...register('dueDate')}
       />
       <DescriptionTextarea 
-        title="Description (optional)" 
+        title={FORM_LABELS.DESCRIPTION}
         error={errors.description?.message}
         {...register('description')}
       />
-      <SelectForm title="Select a directory" />
+      <SelectForm title={FORM_LABELS.DIRECTORY} />
       <ImportantCheckbox 
         value={isImportant}
         onChange={handleImportantChange}
         error={errors.isImportant?.message}
       />
-      <ButtonForm>{taskId ? 'Edit Task' : 'Add Task'}</ButtonForm>
+      <ButtonForm>{taskId ? FORM_TITLES.EDIT_TASK : FORM_TITLES.ADD_TASK}</ButtonForm>
     </form>
   );
 } 

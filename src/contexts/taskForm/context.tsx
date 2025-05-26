@@ -1,6 +1,7 @@
 import { createContext, useContext, ReactNode } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { TaskFormData } from '@/schemas/taskSchema';
+import { ERROR_MESSAGES } from '@/constants/error';
 
 interface TaskFormContextType {
   register: UseFormReturn<TaskFormData>['register'];
@@ -29,7 +30,7 @@ export function TaskFormProvider({ children, ...value }: TaskFormProviderProps) 
 export function useTaskForm() {
   const context = useContext(TaskFormContext);
   if (context === undefined) {
-    throw new Error('useTaskForm must be used within a TaskFormProvider');
+    throw new Error(ERROR_MESSAGES.CONTEXT.TASK_FORM);
   }
   return context;
 } 

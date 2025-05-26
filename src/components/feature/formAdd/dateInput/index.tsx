@@ -1,18 +1,11 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { forwardRef } from 'react';
+import { getTodayString } from '@/constants/date';
 
 interface DateInputProps {
   title: string;
   error?: string;
-}
-
-function getTodayString() {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd}`;
 }
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps & React.InputHTMLAttributes<HTMLInputElement>>(
