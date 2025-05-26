@@ -27,6 +27,8 @@ export const taskFormSchema = z.object({
     }),
   isImportant: z.boolean(),
   isCompleted: z.boolean(),
+  status: z.enum(['today', 'all', 'important', 'completed', 'uncompleted']),
+  directoryId: z.string(),
 });
 
 export type TaskFormData = z.infer<typeof taskFormSchema>; 

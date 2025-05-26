@@ -1,42 +1,33 @@
-import { StatusTitle } from '@/components/common/title/statusTitle';
-import { usePageTitle } from '@/hooks/usePageTitle';
-import { useDirectory } from '@/contexts/directory/context';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Directory } from '@/types/directory';
+import { useDirectory } from '@/contexts/directory/context';
+import { useTask } from '@/contexts/task';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { TaskListWithActions } from '@/components/feature/tasksList/taskListWithActions';
+import { StatusTitle } from '@/components/common/title/statusTitle';
+import { useMemo } from 'react';
 
-export function DirectoryPage() {
+const DirectoryPage = () => {
   const { directoryId } = useParams();
-  const { directories } = useDirectory();
-  const [currentDirectory, setCurrentDirectory] = useState<Directory | undefined>();
-  
-  useEffect(() => {
-    const directory = directoryId 
-      ? directories.find(dir => dir.id === directoryId)
-      : directories.find(dir => dir.id === 'main');
-      
-    if (directory) {
-      setCurrentDirectory(directory);
-    }
-  }, [directoryId, directories]);
+  const { directoriesMap } = useDirectory();
+  const { tasks } = useTask();
+  const directory = directoryId ? directoriesMap.get(directoryId) : undefined;
+  usePageTitle(directory?.name || 'Directory');
 
-  // Set page title to include directory name
-  usePageTitle(currentDirectory?.name ? `${currentDirectory.name}` : 'Directory');
+  // Memoize filtered tasks to prevent unnecessary re-renders
+  const directoryTasks = useMemo(() => {
+    if (!directoryId || !tasks) return [];
+    return tasks.filter(task => task.directoryId === directoryId);
+  }, [tasks, directoryId]);
 
-  // Hiển thị loading state khi chưa có dữ liệu
-  if (!currentDirectory) {
-    return (
-      <div className="flex flex-col gap-4">
-        <StatusTitle title="Loading..." />
-      </div>
-    );
-  }
+  if (!directory) return null;
 
   return (
-    <div className="flex flex-col gap-4">
-      <StatusTitle title={`${currentDirectory.name}'s Tasks`} />
-      {/* Add your directory content here */}
-    </div>
+    <>
+      <StatusTitle title={`${directory.name} Tasks`} />
+      <TaskListWithActions tasks={directoryTasks} />
+    </>
   );
-}
+};
+
+export default DirectoryPage;
  

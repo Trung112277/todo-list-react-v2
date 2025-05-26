@@ -38,6 +38,7 @@ export function useEditTaskForm({ taskId }: UseEditTaskFormProps) {
       dueDate: task?.dueDate || getTodayString(),
       isImportant: task?.isImportant || false,
       isCompleted: task?.isCompleted || false,
+      status: task?.status || 'all',
     },
   });
 

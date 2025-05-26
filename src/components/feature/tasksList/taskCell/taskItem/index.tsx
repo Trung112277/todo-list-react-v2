@@ -8,7 +8,7 @@ export function TaskItem() {
   const taskId = useTaskItemId();
 
   return (
-    <div 
+    <li 
       className="transition-all duration-300 ease-in-out transform hover:scale-[1.02]"
     >
       {isLoading ? (
@@ -16,6 +16,6 @@ export function TaskItem() {
       ) : (
         <TaskListItem taskId={taskId} />
       )}
-    </div>
+    </li>
   );
 } 

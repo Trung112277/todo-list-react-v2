@@ -5,12 +5,27 @@ import { useTask } from '@/contexts/task';
 import { useTaskItemId } from '@/contexts/taskItem/context';
 import { TaskItemContentProvider } from '@/contexts/taskItemContent/context';
 import { cn } from '@/lib/utils';
+import { useLocation } from 'react-router-dom';
 
 function TaskItemContentComponent() {
   const taskId = useTaskItemId();
-  const { tasksMap, tasks } = useTask();
+  const { tasksMap, getTasksByStatus } = useTask();
   const task = tasksMap.get(taskId);
-  const isFirstTask = tasks[0]?.id === taskId;
+  const location = useLocation();
+
+  // Get the current status from the path
+  const getStatusFromPath = (path: string) => {
+    if (path === '/') return 'all';
+    if (path === '/today') return 'today';
+    if (path === '/important') return 'important';
+    if (path === '/completed') return 'completed';
+    if (path === '/uncompleted') return 'uncompleted';
+    return 'all';
+  };
+
+  const status = getStatusFromPath(location.pathname);
+  const filteredTasks = getTasksByStatus(status);
+  const isFirstTask = filteredTasks[0]?.id === taskId;
 
   if (!task) return null;
 

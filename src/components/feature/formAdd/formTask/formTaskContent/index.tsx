@@ -38,7 +38,11 @@ export function TaskForm() {
         error={errors.description?.message}
         {...register('description')}
       />
-      <SelectForm title={FORM_LABELS.DIRECTORY} />
+      <SelectForm 
+        title={FORM_LABELS.DIRECTORY} 
+        register={register}
+        error={errors.directoryId?.message}
+      />
       <ImportantCheckbox 
         value={isImportant}
         onChange={handleImportantChange}

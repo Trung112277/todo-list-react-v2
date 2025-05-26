@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, ReactNode, useEffect, useMemo } 
 import { Task, TaskContextType } from '@/types/task';
 import { taskReducer } from './reducer';
 import { useError } from '../error/context';
-import { getInitialState, saveTasksToStorage } from './helpers';
+import { getInitialState, saveTasksToStorage, STORAGE_KEY } from './helpers';
 import { useTaskActions } from './actions';
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -19,6 +19,7 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     return map;
   }, [tasks]);
 
+  // Save tasks to localStorage when they change
   useEffect(() => {
     try {
       saveTasksToStorage(tasks);
@@ -28,11 +29,36 @@ export function TaskProvider({ children }: { children: ReactNode }) {
     }
   }, [tasks, setError]);
 
+  const getTasksByStatus = (status: Task['status']) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    switch (status) {
+      case 'today':
+        return tasks.filter(task => {
+          const taskDate = new Date(task.dueDate);
+          taskDate.setHours(0, 0, 0, 0);
+          return taskDate.getTime() === today.getTime();
+        });
+      case 'important':
+        return tasks.filter(task => task.isImportant);
+      case 'completed':
+        return tasks.filter(task => task.isCompleted);
+      case 'uncompleted':
+        return tasks.filter(task => !task.isCompleted);
+      case 'all':
+      default:
+        return tasks;
+    }
+  };
+
   const value = useMemo(() => ({
     tasks,
     tasksMap,
+    dispatch,
     ...actions,
-  }), [tasks, tasksMap, actions]);
+    getTasksByStatus,
+  }), [tasks, tasksMap, actions, dispatch]);
 
   return (
     <TaskContext.Provider value={value}>

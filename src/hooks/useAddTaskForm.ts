@@ -1,9 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { taskFormSchema, type TaskFormData } from '@/schemas/taskSchema';
-import { useTask } from '@/contexts/task';
-import { useLoading } from '@/contexts/loading/context';
-import { useDialog } from '@/contexts/dialog/context';
+import { useTaskActions } from '@/contexts/task/actions';
+import { useTask } from '@/contexts/task/context';
+import { useDirectory } from '@/contexts/directory/context';
+import { useTaskDialog } from '@/hooks/useTaskDialog';
+import React from 'react';
+import { toSlug } from '@/utils/string';
 
 function getTodayString() {
   const today = new Date();
@@ -18,9 +21,10 @@ interface UseAddTaskFormProps {
 }
 
 export function useAddTaskForm({ taskId }: UseAddTaskFormProps) {
-  const { addTask, updateTask, tasksMap } = useTask();
-  const { setIsLoading } = useLoading();
-  const { closeDialog: closeAddDialog } = useDialog();
+  const { dispatch, tasksMap } = useTask();
+  const { addTask, updateTask } = useTaskActions(dispatch);
+  const { directoriesMap } = useDirectory();
+  const { closeDialog } = useTaskDialog();
   const task = taskId ? tasksMap.get(taskId) : undefined;
 
   const {
@@ -38,8 +42,17 @@ export function useAddTaskForm({ taskId }: UseAddTaskFormProps) {
       dueDate: task?.dueDate || getTodayString(),
       isImportant: task?.isImportant || false,
       isCompleted: task?.isCompleted || false,
-    },
+      status: task?.status || 'all',
+      directoryId: task?.directoryId || 'main'
+    }
   });
+
+  // Set initial directoryId value
+  React.useEffect(() => {
+    if (task?.directoryId) {
+      setValue('directoryId', task.directoryId);
+    }
+  }, [task?.directoryId, setValue]);
 
   const isImportant = watch('isImportant');
 
@@ -48,19 +61,18 @@ export function useAddTaskForm({ taskId }: UseAddTaskFormProps) {
   };
 
   const onSubmit = async (data: TaskFormData) => {
-    setIsLoading(true);
     try {
-      if (taskId) {
+      if (taskId && task) {
+        // Update existing task
         await updateTask(taskId, data);
       } else {
+        // Add new task
         await addTask(data);
-        closeAddDialog();
       }
+      closeDialog();
       reset();
     } catch (error) {
-      console.error('Error handling task:', error);
-    } finally {
-      setIsLoading(false);
+      console.error('Error submitting task:', error);
     }
   };
 
@@ -71,5 +83,7 @@ export function useAddTaskForm({ taskId }: UseAddTaskFormProps) {
     isImportant,
     handleImportantChange,
     onSubmit,
+    taskId,
+    directories: Object.values(directoriesMap)
   };
 } 

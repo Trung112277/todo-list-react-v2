@@ -3,9 +3,9 @@ import { PageAllTasks } from '../components/pages/allTasks';
 import { PageCompletedTasks } from '../components/pages/completedTasks';
 import { PageImportantTasks } from '../components/pages/importantTasks';
 import { PageTodayTasks } from '../components/pages/todayTasks';
-import { PageUncompletedTasks } from '../components/pages/uncompletedTasks';
+import { PageUncompletedTasks } from '../components/pages/uncompletedTasks/index';
 import { MainLayout } from '../layout/mainLayout';
-import { DirectoryPage } from '../components/pages/directoryTasks/DirectoryPage';
+import DirectoryPage from '../components/pages/directoryTasks/DirectoryPage';
 
 export function AppRoutes() {
   return (

@@ -7,9 +7,9 @@ interface TaskListItemProps {
 
 export function TaskListItem({ taskId }: TaskListItemProps) {
   return (
-    <li>
+    <div>
       <BadgeTask taskId={taskId} />
       <TaskItemContent />
-    </li> 
+    </div> 
   );
 }

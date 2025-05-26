@@ -1,11 +1,14 @@
-import { useTask } from '@/contexts/task';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { TaskGrid } from './taskGrid';
+import { Task } from '@/types/task';
 
-export function TasksList() {
-  const { tasks } = useTask();
+interface TasksListProps {
+  tasks: Task[];
+}
+
+export function TasksList({ tasks }: TasksListProps) {
   useKeyboardShortcuts();
 
-  return <TaskGrid tasksCount={tasks.length} />;
+  return <TaskGrid tasks={tasks} />;
 }
   

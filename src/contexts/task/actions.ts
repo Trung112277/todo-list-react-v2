@@ -1,15 +1,28 @@
 import { Task } from '@/types/task';
 import { useError } from '../error/context';
 import { useLoading } from '../loading/context';
+import { useDirectory } from '../directory/context';
 
 export const useTaskActions = (dispatch: React.Dispatch<any>) => {
   const { setError } = useError();
   const { setIsLoading } = useLoading();
+  const { directoriesMap } = useDirectory();
 
   const addTask = async (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
       setIsLoading(true);
-      dispatch({ type: 'ADD_TASK', payload: task });
+      // Get the current directory ID from the URL or use 'main' as default
+      const currentDirectoryId = window.location.pathname.startsWith('/directory/')
+        ? window.location.pathname.split('/')[2]
+        : 'main';
+      
+      // Add directoryId to the task
+      const taskWithDirectory = {
+        ...task,
+        directoryId: task.directoryId || currentDirectoryId
+      };
+      
+      dispatch({ type: 'ADD_TASK', payload: taskWithDirectory });
     } catch (error) {
       setError('Failed to add task');
       console.error('Error adding task:', error);
@@ -21,7 +34,18 @@ export const useTaskActions = (dispatch: React.Dispatch<any>) => {
   const updateTask = async (id: string, updates: Partial<Task>) => {
     try {
       setIsLoading(true);
-      dispatch({ type: 'UPDATE_TASK', payload: { id, updates } });
+      // Get the current directory ID from the URL or use 'main' as default
+      const currentDirectoryId = window.location.pathname.startsWith('/directory/')
+        ? window.location.pathname.split('/')[2]
+        : 'main';
+      
+      // If directoryId is not provided in updates, use the current directory
+      const updatesWithDirectory = {
+        ...updates,
+        directoryId: updates.directoryId ?? currentDirectoryId
+      };
+      
+      dispatch({ type: 'UPDATE_TASK', payload: { id, updates: updatesWithDirectory } });
     } catch (error) {
       setError('Failed to update task');
       console.error('Error updating task:', error);
@@ -37,6 +61,18 @@ export const useTaskActions = (dispatch: React.Dispatch<any>) => {
     } catch (error) {
       setError('Failed to delete task');
       console.error('Error deleting task:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deleteAllTasks = async () => {
+    try {
+      setIsLoading(true);
+      dispatch({ type: 'DELETE_ALL_TASKS' });
+    } catch (error) {
+      setError('Failed to delete all tasks');
+      console.error('Error deleting all tasks:', error);
     } finally {
       setIsLoading(false);
     }
@@ -59,8 +95,8 @@ export const useTaskActions = (dispatch: React.Dispatch<any>) => {
       setIsLoading(true);
       dispatch({ type: 'TOGGLE_TASK_IMPORTANT', payload: id });
     } catch (error) {
-      setError('Failed to toggle task important status');
-      console.error('Error toggling task important status:', error);
+      setError('Failed to toggle task important');
+      console.error('Error toggling task important:', error);
     } finally {
       setIsLoading(false);
     }
@@ -70,6 +106,7 @@ export const useTaskActions = (dispatch: React.Dispatch<any>) => {
     addTask,
     updateTask,
     deleteTask,
+    deleteAllTasks,
     toggleTaskStatus,
     toggleTaskImportant,
   };

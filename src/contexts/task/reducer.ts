@@ -5,6 +5,7 @@ export type TaskAction =
   | { type: 'ADD_TASK'; payload: Omit<Task, 'id' | 'createdAt' | 'updatedAt'> }
   | { type: 'UPDATE_TASK'; payload: { id: string; updates: Partial<Task> } }
   | { type: 'DELETE_TASK'; payload: string }
+  | { type: 'DELETE_ALL_TASKS' }
   | { type: 'TOGGLE_TASK_STATUS'; payload: string }
   | { type: 'TOGGLE_TASK_IMPORTANT'; payload: string };
 
@@ -22,6 +23,9 @@ export function taskReducer(state: Task[], action: TaskAction): Task[] {
 
     case 'DELETE_TASK':
       return state.filter((task) => task.id !== action.payload);
+
+    case 'DELETE_ALL_TASKS':
+      return [];
 
     case 'TOGGLE_TASK_STATUS':
       return state.map((task) =>

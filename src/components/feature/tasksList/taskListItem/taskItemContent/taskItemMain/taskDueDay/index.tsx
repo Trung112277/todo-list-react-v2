@@ -3,12 +3,26 @@ import { FaCalendarDays } from 'react-icons/fa6';
 import { useTask } from '@/contexts/task';
 import { useTaskItemId } from '@/contexts/taskItem/context';
 import { cn } from '@/lib/utils';
+import { useLocation } from 'react-router-dom';
 
 export function TaskDueDay() {
   const { task } = useTaskItemContent();
   const taskId = useTaskItemId();
-  const { tasks } = useTask();
-  const isFirstTask = tasks[0]?.id === taskId;
+  const { getTasksByStatus } = useTask();
+  const location = useLocation();
+
+  const getStatusFromPath = (path: string) => {
+    if (path === '/') return 'all';
+    if (path === '/today') return 'today';
+    if (path === '/important') return 'important';
+    if (path === '/completed') return 'completed';
+    if (path === '/uncompleted') return 'uncompleted';
+    return 'all';
+  };
+
+  const status = getStatusFromPath(location.pathname);
+  const filteredTasks = getTasksByStatus(status);
+  const isFirstTask = filteredTasks[0]?.id === taskId;
 
   // Ensure dueDate is a Date object from the string
   const dueDateObj = new Date(task.dueDate);

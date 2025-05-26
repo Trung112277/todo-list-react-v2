@@ -6,7 +6,12 @@ export const getInitialState = (): Task[] => {
   try {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    const tasks = stored ? JSON.parse(stored) : [];
+    // Add directoryId to existing tasks
+    return tasks.map((task: Task) => ({
+      ...task,
+      directoryId: task.directoryId || 'main'
+    }));
   } catch (error) {
     console.error('Error loading tasks from localStorage:', error);
     return [];
