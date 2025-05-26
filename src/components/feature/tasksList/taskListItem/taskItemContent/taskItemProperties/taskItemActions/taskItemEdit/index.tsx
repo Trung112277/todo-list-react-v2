@@ -8,13 +8,14 @@ import { Dialog } from '@/components/ui/dialog';
 import { SubTitle } from '@/components/common/title/subTitle';
 import { FormTask } from '@/components/feature/formAdd/formTask';
 import { TaskItemEditButton } from './taskItemEditButton';
-import { useTaskItemId } from '@/contexts/taskItem/context';
+import { TaskItemEditProvider } from '@/contexts/taskItemEdit/context';
+import { useTaskItemEdit } from '@/contexts/taskItemEdit/context';
 
-export function TaskItemEdit() {
-  const taskId = useTaskItemId();
+function TaskItemEditContent() {
+  const { taskId, isOpen, openDialog, closeDialog } = useTaskItemEdit();
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={(open) => open ? openDialog() : closeDialog()}>
       <DialogTrigger>
         <TaskItemEditButton />
       </DialogTrigger>
@@ -27,5 +28,13 @@ export function TaskItemEdit() {
         <FormTask taskId={taskId} />
       </DialogContent>
     </Dialog>
+  );
+}
+
+export function TaskItemEdit() {
+  return (
+    <TaskItemEditProvider>
+      <TaskItemEditContent />
+    </TaskItemEditProvider>
   );
 }

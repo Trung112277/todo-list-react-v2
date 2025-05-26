@@ -1,0 +1,75 @@
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { taskFormSchema, type TaskFormData } from '@/schemas/taskSchema';
+import { useTask } from '@/contexts/task';
+import { useLoading } from '@/contexts/loading/context';
+import { useDialog } from '@/contexts/dialog/context';
+
+function getTodayString() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+interface UseAddTaskFormProps {
+  taskId?: string;
+}
+
+export function useAddTaskForm({ taskId }: UseAddTaskFormProps) {
+  const { addTask, updateTask, tasksMap } = useTask();
+  const { setIsLoading } = useLoading();
+  const { closeDialog: closeAddDialog } = useDialog();
+  const task = taskId ? tasksMap.get(taskId) : undefined;
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<TaskFormData>({
+    resolver: zodResolver(taskFormSchema),
+    defaultValues: {
+      title: task?.title || '',
+      description: task?.description || '',
+      dueDate: task?.dueDate || getTodayString(),
+      isImportant: task?.isImportant || false,
+      isCompleted: task?.isCompleted || false,
+    },
+  });
+
+  const isImportant = watch('isImportant');
+
+  const handleImportantChange = (checked: boolean) => {
+    setValue('isImportant', checked, { shouldValidate: true });
+  };
+
+  const onSubmit = async (data: TaskFormData) => {
+    setIsLoading(true);
+    try {
+      if (taskId) {
+        await updateTask(taskId, data);
+      } else {
+        await addTask(data);
+        closeAddDialog();
+      }
+      reset();
+    } catch (error) {
+      console.error('Error handling task:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    register,
+    handleSubmit,
+    errors,
+    isImportant,
+    handleImportantChange,
+    onSubmit,
+  };
+} 

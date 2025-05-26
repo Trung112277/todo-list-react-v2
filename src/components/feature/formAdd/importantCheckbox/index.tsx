@@ -1,41 +1,28 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { forwardRef } from 'react';
 
 interface ImportantCheckboxProps {
+  value: boolean;
+  onChange: (checked: boolean) => void;
   error?: string;
-  value?: boolean;
-  onChange?: (value: boolean) => void;
 }
 
-export const ImportantCheckbox = forwardRef<HTMLDivElement, ImportantCheckboxProps>(
-  ({ error, value = false, onChange, ...props }, ref) => {
-    const handleChange = (checked: boolean) => {
-      onChange?.(checked);
-    };
+export function ImportantCheckbox({ value, onChange, error }: ImportantCheckboxProps) {
+  const handleChange = (checked: boolean | 'indeterminate') => {
+    onChange(checked === true);
+  };
 
-    return (
-      <div className="space-y-2" ref={ref}>
-        <div className="flex items-center space-x-2 cursor-pointer">
-          <Checkbox 
-            id="important" 
-            checked={value}
-            onCheckedChange={handleChange}
-            className="h-5 w-5"
-            {...props}
-          />
-          <Label 
-            htmlFor="important" 
-            className="text-gray-500 text-lg cursor-pointer select-none"
-            onClick={() => handleChange(!value)}
-          >
-            Mark as important
-          </Label>
-        </div>
-        {error && (
-          <p className="text-sm text-red-500">{error}</p>
-        )}
-      </div>
-    );
-  }
-); 
+  return (
+    <div className="flex items-center gap-2">
+      <Label className="text-md font-medium text-gray-700 cursor-pointer select-none flex items-center gap-2">
+        <Checkbox
+          checked={value}
+          onCheckedChange={handleChange}
+          className="cursor-pointer"
+        />
+        Mark as important
+      </Label>
+      {error && <p className="text-sm text-red-600">{error}</p>}
+    </div>
+  );
+} 
