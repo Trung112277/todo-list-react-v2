@@ -67,5 +67,6 @@ export function useEditTaskForm({ taskId }: UseEditTaskFormProps) {
     isImportant,
     handleImportantChange,
     onSubmit,
+    taskId,
   };
 } 

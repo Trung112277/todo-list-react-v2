@@ -2,7 +2,11 @@ import { useTask } from '@/contexts/task';
 import { TaskCell } from '../taskCell';
 import { ButtonAddTaskList } from '@/components/feature/button/buttonAddTaskList';
 
-export function TaskGrid() {
+interface TaskGridProps {
+  tasksCount: number;
+}
+
+export function TaskGrid({ tasksCount }: TaskGridProps) {
   const { tasks } = useTask();
 
   return (

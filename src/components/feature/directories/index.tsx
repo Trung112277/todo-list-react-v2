@@ -1,7 +1,6 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { NavLinkDirectory } from './navLinkDirectory';
 import { AddNewDirectory } from './addNewDirectory';
-import { directories } from '@/constants/directories';
 
 export default function Directories() {
   return (
@@ -11,7 +10,7 @@ export default function Directories() {
           Directories
         </AccordionTrigger>
         <AccordionContent>
-          <NavLinkDirectory directories={directories} />
+          <NavLinkDirectory />
           <div className="flex justify-center mt-3">
             <AddNewDirectory />
           </div>

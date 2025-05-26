@@ -4,25 +4,36 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { EditDirectoryButton } from './editDirectoryButton';
 import { EditDirectoryForm } from './editDirectoryForm';
+import { useState } from 'react';
 
-export function EditDirectory() {
+interface EditDirectoryProps {
+  directoryId: string;
+  initialName: string;
+}
+
+export function EditDirectory({ directoryId, initialName }: EditDirectoryProps) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
-      <DialogTrigger>
-        <EditDirectoryButton />
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>
-            <SubTitle>Edit directory</SubTitle>
-          </DialogTitle>
-        </DialogHeader>
-        <EditDirectoryForm />
-      </DialogContent>
-    </Dialog>
+    <>
+      <EditDirectoryButton onClick={() => setOpen(true)} />
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              <SubTitle>Edit directory</SubTitle>
+            </DialogTitle>
+          </DialogHeader>
+          <EditDirectoryForm 
+            directoryId={directoryId} 
+            initialName={initialName} 
+            onSuccess={() => setOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

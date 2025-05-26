@@ -1,6 +1,19 @@
 import { FormDirectory } from '@/components/feature/formAdd/fomDirectory';
 
-export function EditDirectoryForm() {
-    return <FormDirectory buttonText="Edit Directory" />;
+interface EditDirectoryFormProps {
+  directoryId: string;
+  initialName: string;
+  onSuccess?: () => void;
+}
+
+export function EditDirectoryForm({ directoryId, initialName, onSuccess }: EditDirectoryFormProps) {
+  return (
+    <FormDirectory
+      buttonText="Save Changes"
+      directoryId={directoryId}
+      initialName={initialName}
+      onSuccess={onSuccess}
+    />
+  );
 }
 

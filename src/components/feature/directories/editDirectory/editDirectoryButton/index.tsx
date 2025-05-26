@@ -1,6 +1,23 @@
 import { FaPencilAlt } from 'react-icons/fa';
+import { cn } from "@/lib/utils";
 
-export function EditDirectoryButton() {
-    return <FaPencilAlt className="hover:text-blue-500 w-4 h-4" />;
+interface EditDirectoryButtonProps {
+  onClick?: () => void;
+}
+
+export function EditDirectoryButton({ onClick }: EditDirectoryButtonProps) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            className={cn(
+                "inline-flex items-center justify-center p-2 rounded-md",
+                " dark:hover:bg-gray-800",
+                "transition-colors"
+            )}
+        >
+            <FaPencilAlt className="w-4 h-4 hover:text-blue-500" />
+        </button>
+    );
 }
 

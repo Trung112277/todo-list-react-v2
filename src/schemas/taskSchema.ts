@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 const onlyWhitespace = /^\s*$/;
-const onlyCode = /^[a-zA-Z0-9_]+$/;
 const onlySpecial = /^[^a-zA-Z0-9]+$/;
 
 export const taskFormSchema = z.object({
@@ -10,9 +9,6 @@ export const taskFormSchema = z.object({
     .max(100, 'Title is too long')
     .refine((val) => !onlyWhitespace.test(val), {
       message: 'Title cannot be only whitespace',
-    })
-    .refine((val) => !onlyCode.test(val), {
-      message: 'Title cannot be only code',
     })
     .refine((val) => !onlySpecial.test(val), {
       message: 'Title cannot be only special characters',

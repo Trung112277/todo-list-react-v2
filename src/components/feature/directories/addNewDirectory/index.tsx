@@ -5,24 +5,26 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { AddNewDirectoryForm } from './addNewDirectoryForm';
+import { useState } from 'react';
 
 export function AddNewDirectory() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
-      <DialogTrigger>
-        <AddNewDirectoryButton />
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>
-            <SubTitle>Create new directory</SubTitle>
-          </DialogTitle>
-        </DialogHeader>
-        <AddNewDirectoryForm />
-      </DialogContent>
-    </Dialog>
+    <>
+      <AddNewDirectoryButton onClick={() => setOpen(true)} />
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              <SubTitle>Create new directory</SubTitle>
+            </DialogTitle>
+          </DialogHeader>
+          <AddNewDirectoryForm onSuccess={() => setOpen(false)} />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

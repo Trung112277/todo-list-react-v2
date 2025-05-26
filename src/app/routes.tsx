@@ -2,11 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import { PageAllTasks } from '../components/pages/allTasks';
 import { PageCompletedTasks } from '../components/pages/completedTasks';
 import { PageImportantTasks } from '../components/pages/importantTasks';
-import { PageMainDirectory } from '../components/pages/directoryTasks/mainDirectory';
 import { PageTodayTasks } from '../components/pages/todayTasks';
 import { PageUncompletedTasks } from '../components/pages/uncompletedTasks';
 import { MainLayout } from '../layout/mainLayout';
-import { DirectoryTasks } from '../components/pages/directoryTasks';
+import { DirectoryPage } from '../components/pages/directoryTasks/DirectoryPage';
 
 export function AppRoutes() {
   return (
@@ -17,9 +16,7 @@ export function AppRoutes() {
         <Route path="important" element={<PageImportantTasks />} />
         <Route path="completed" element={<PageCompletedTasks />} />
         <Route path="uncompleted" element={<PageUncompletedTasks />} />
-        <Route path="/" element={<DirectoryTasks />}>
-          <Route path="directory/main" element={<PageMainDirectory />} />
-        </Route>
+        <Route path="directory/:directoryId" element={<DirectoryPage />} />
       </Route>
     </Routes>
   );

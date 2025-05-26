@@ -11,8 +11,25 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { DeleteDirectoryButton } from './deleteDirectoryButton';
+import { useDirectory } from '@/contexts/directory/context';
+import { useLocation } from 'react-router-dom';
 
-export function DeleteDirectory() {
+interface DeleteDirectoryProps {
+  directoryId: string;
+}
+
+export function DeleteDirectory({ directoryId }: DeleteDirectoryProps) {
+  const { deleteDirectory } = useDirectory();
+  const location = useLocation();
+
+  const handleDelete = () => {
+    deleteDirectory(directoryId);
+    // Nếu đang ở cùng trang đang xóa, chuyển về trang home
+    if (location.pathname.startsWith(`/directory/${directoryId}`)) {
+      window.location.href = '/';
+    }
+  };
+
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -29,7 +46,7 @@ export function DeleteDirectory() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="w-fit">Confirm</AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete} className="w-fit">Confirm</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
