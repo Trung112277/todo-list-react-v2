@@ -20,11 +20,19 @@ function TaskItemContentComponent() {
     if (path === '/important') return 'important';
     if (path === '/completed') return 'completed';
     if (path === '/uncompleted') return 'uncompleted';
+    if (path.startsWith('/directory/')) return 'all';
     return 'all';
   };
 
   const status = getStatusFromPath(location.pathname);
-  const filteredTasks = getTasksByStatus(status);
+  let filteredTasks = getTasksByStatus(status);
+
+  // If we're in a directory page, filter tasks by directoryId
+  if (location.pathname.startsWith('/directory/')) {
+    const directoryId = location.pathname.split('/').pop();
+    filteredTasks = filteredTasks.filter(task => task.directoryId === directoryId);
+  }
+
   const isFirstTask = filteredTasks[0]?.id === taskId;
 
   if (!task) return null;

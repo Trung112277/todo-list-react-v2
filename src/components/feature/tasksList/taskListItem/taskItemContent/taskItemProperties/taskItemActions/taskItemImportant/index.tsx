@@ -17,11 +17,18 @@ export function TaskItemImportant() {
     if (path === '/important') return 'important';
     if (path === '/completed') return 'completed';
     if (path === '/uncompleted') return 'uncompleted';
+    if (path.startsWith('/directory/')) return 'all';
     return 'all';
   };
 
   const status = getStatusFromPath(location.pathname);
-  const filteredTasks = getTasksByStatus(status);
+  let filteredTasks = getTasksByStatus(status);
+
+  if (location.pathname.startsWith('/directory/')) {
+    const directoryId = location.pathname.split('/').pop();
+    filteredTasks = filteredTasks.filter(task => task.directoryId === directoryId);
+  }
+
   const isFirstTask = filteredTasks[0]?.id === taskId;
 
   if (!task) return null; // Don't render if task not found
@@ -34,7 +41,9 @@ export function TaskItemImportant() {
     <Button
       variant="ghost"
       onClick={handleClick}
-      className="p-0 h-8 hover:bg-transparent"
+      className={cn(
+        "p-0 h-8 hover:bg-transparent"
+      )}
     >
       <IoStar
         className={cn(

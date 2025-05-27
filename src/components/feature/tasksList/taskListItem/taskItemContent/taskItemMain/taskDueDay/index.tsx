@@ -17,11 +17,18 @@ export function TaskDueDay() {
     if (path === '/important') return 'important';
     if (path === '/completed') return 'completed';
     if (path === '/uncompleted') return 'uncompleted';
+    if (path.startsWith('/directory/')) return 'all';
     return 'all';
   };
 
   const status = getStatusFromPath(location.pathname);
-  const filteredTasks = getTasksByStatus(status);
+  let filteredTasks = getTasksByStatus(status);
+
+  if (location.pathname.startsWith('/directory/')) {
+    const directoryId = location.pathname.split('/').pop();
+    filteredTasks = filteredTasks.filter(task => task.directoryId === directoryId);
+  }
+
   const isFirstTask = filteredTasks[0]?.id === taskId;
 
   // Ensure dueDate is a Date object from the string
@@ -38,12 +45,16 @@ export function TaskDueDay() {
       className={cn(
         "mt-auto flex w-full items-center gap-2 text-md",
         isFirstTask 
-          ? "text-white/90" 
+          ? "text-white" 
           : "text-slate-500 dark:text-slate-400"
       )}
       dateTime={dueDateObj.toISOString().split('T')[0]}
     >
-      <FaCalendarDays />
+      <FaCalendarDays className={cn(
+        isFirstTask 
+          ? "text-white" 
+          : "text-slate-500 dark:text-slate-400"
+      )} />
       {dueDateObj.toLocaleDateString()}
     </time>
   );

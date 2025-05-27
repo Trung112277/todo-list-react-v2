@@ -13,5 +13,5 @@ function TaskItemPropertiesComponent() {
     </div>
   );
 }
-
 export const TaskItemProperties = memo(TaskItemPropertiesComponent);
+
