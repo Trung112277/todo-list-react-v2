@@ -23,27 +23,33 @@ export function ButtonDeleteAllTasks() {
   };
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger className='hover:text-red-500'>Delete All Tasks</AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-            <SubTitle>Are you sure?</SubTitle>
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-lg text-gray-600">
-            All data will be deleted permanently.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel className='bg-slate-100'>Cancel</AlertDialogCancel>
-          <AlertDialogAction 
-            className="w-fit bg-primary"
-            onClick={handleDeleteAll}
-          >
-            Confirm
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <div className="mb-3 text-center">
+      <AlertDialog>
+        <AlertDialogTrigger className="hover:text-red-500">
+          Delete All Tasks
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              <SubTitle>Are you sure?</SubTitle>
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-lg text-gray-600">
+              All data will be deleted permanently.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-slate-100">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="w-fit bg-primary"
+              onClick={handleDeleteAll}
+            >
+              Confirm
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 }

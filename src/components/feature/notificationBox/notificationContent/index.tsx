@@ -18,7 +18,7 @@ export function NotificationContent({ tasks }: NotificationContentProps) {
         return (
           <div
             key={task.id}
-            className="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="flex items-start gap-3 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 border-b-2 border-slate-200 "
           >
             <div className="flex flex-col gap-2 w-full">
               <p className="text-md font-medium truncate">{task.title}</p>

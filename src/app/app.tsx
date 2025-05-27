@@ -6,6 +6,7 @@ import { DialogProvider } from '@/contexts/dialog/context';
 import { DirectoryProvider } from '@/contexts/directory/context';
 import { DirectoryDialogProvider } from '@/contexts/directoryDialog/context';
 import { SearchProvider } from '@/contexts/search/context';
+import { ViewTasksProvider } from '@/contexts/viewTasks/context';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export function App() {
@@ -17,8 +18,10 @@ export function App() {
             <SearchProvider>
               <DialogProvider>
                 <DirectoryDialogProvider>
-                  <LoadingSpinner />
-                  <AppRoutes />
+                  <ViewTasksProvider>
+                    <LoadingSpinner />
+                    <AppRoutes />
+                  </ViewTasksProvider>
                 </DirectoryDialogProvider>
               </DialogProvider>
             </SearchProvider>

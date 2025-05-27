@@ -1,5 +1,6 @@
 import { BadgeTask } from './badgeTask';
 import { TaskItemContent } from './taskItemContent';
+import { TaskItemIdProvider } from '@/contexts/taskItem/context';
 
 interface TaskListItemProps {
   taskId: string;
@@ -7,9 +8,11 @@ interface TaskListItemProps {
 
 export function TaskListItem({ taskId }: TaskListItemProps) {
   return (
-    <div>
-      <BadgeTask taskId={taskId} />
-      <TaskItemContent />
-    </div> 
+    <TaskItemIdProvider taskId={taskId}>
+      <div>
+        <BadgeTask taskId={taskId} />
+        <TaskItemContent />
+      </div>
+    </TaskItemIdProvider>
   );
 }

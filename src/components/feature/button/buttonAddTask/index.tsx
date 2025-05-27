@@ -19,7 +19,7 @@ export function ButtonAddTask() {
             <SubTitle>Add a task</SubTitle>
           </DialogTitle>
         </DialogHeader>
-        <FormTask name="Add new task" />
+        <FormTask />
       </DialogContent>
     </Dialog>
   );

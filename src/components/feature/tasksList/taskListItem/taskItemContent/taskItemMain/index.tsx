@@ -3,12 +3,20 @@ import { TaskDescription } from "./taskDescription";
 import { TaskDueDay } from "./taskDueDay";
 import { TaskName } from "./taskName";
 import { useTaskItemContent } from '@/contexts/taskItemContent/context';
+import { cn } from '@/lib/utils';
 
-function TaskItemMainComponent() {
+interface TaskItemMainProps {
+  view: 'grid' | 'list';
+}
+
+function TaskItemMainComponent({ view }: TaskItemMainProps) {
   const { task } = useTaskItemContent();
 
   return (
-    <div className="flex flex-col flex-1 gap-2">
+    <div className={cn(
+      "flex flex-col flex-1 gap-2",
+      view === 'list' && "w-[80%] pr-5"
+    )}>
       <TaskName />
       <TaskDescription />
       <TaskDueDay />

@@ -6,12 +6,14 @@ import { useTaskItemId } from '@/contexts/taskItem/context';
 import { TaskItemContentProvider } from '@/contexts/taskItemContent/context';
 import { cn } from '@/lib/utils';
 import { useLocation } from 'react-router-dom';
+import { useViewTasks } from '@/contexts/viewTasks/context';
 
 function TaskItemContentComponent() {
   const taskId = useTaskItemId();
   const { tasksMap, getTasksByStatus } = useTask();
   const task = tasksMap.get(taskId);
   const location = useLocation();
+  const { view } = useViewTasks();
 
   // Get the current status from the path
   const getStatusFromPath = (path: string) => {
@@ -40,13 +42,16 @@ function TaskItemContentComponent() {
   return (
     <TaskItemContentProvider task={task}>
       <article className={cn(
-        "rounded-lg p-3 sm:p-4 flex text-left transition hover:shadow-lg hover:shadow-slate-300 flex-col h-52 sm:h-64",
+        "rounded-lg p-3 sm:p-4 flex text-left transition hover:shadow-lg hover:shadow-slate-300",
+        view === 'grid' 
+          ? "flex-col h-52 sm:h-64" 
+          : "flex-row h-[150px]",
         isFirstTask 
           ? "bg-primary text-white dark:bg-primary dark:text-white" 
           : "bg-slate-100 dark:bg-slate-800 dark:hover:shadow-transparent"
       )}>
-        <TaskItemMain />
-        <TaskItemProperties />
+        <TaskItemMain view={view} />
+        <TaskItemProperties view={view} />
       </article>
     </TaskItemContentProvider>
   );

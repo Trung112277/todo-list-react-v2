@@ -33,7 +33,7 @@ function TaskNameComponent() {
 
   return (
     <h3 className={cn(
-      "text-lg font-medium",
+      "text-lg font-medium line-clamp-1",
       isFirstTask 
         ? "text-white" 
         : "text-slate-700 dark:text-slate-200"
