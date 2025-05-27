@@ -8,10 +8,5 @@ export function PageAllTasks() {
   const { getTasksByStatus } = useTask();
   const tasks = getTasksByStatus('all');
 
-  return (
-    <>
-      <StatusTitle title="All Tasks" />
-      <TaskListWithActions tasks={tasks} />
-    </>
-  );
+  return <TaskListWithActions tasks={tasks} title="All Tasks" />;
 }

@@ -1,4 +1,3 @@
-import { StatusTitle } from '@/components/common/title/statusTitle';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTask } from '@/contexts/task';
 import { TaskListWithActions } from '@/components/feature/tasksList/taskListWithActions';
@@ -8,10 +7,5 @@ export function PageImportantTasks() {
   const { getTasksByStatus } = useTask();
   const tasks = getTasksByStatus('important');
 
-  return (
-    <>
-      <StatusTitle title="Important Tasks" />
-      <TaskListWithActions tasks={tasks} />
-    </>
-  );
+  return <TaskListWithActions tasks={tasks} title="Important Tasks" />;
 }

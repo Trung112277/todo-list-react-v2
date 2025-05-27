@@ -58,7 +58,7 @@ export function StatusTitle({ title }: StatusTitleProps) {
     const taskText = count === 1 ? 'task' : 'tasks';
 
     return (
-        <h1 className="font-medium my-5 text-center sm:text-left sm:my-8 md:text-2xl text-lg dark:text-slate-200">
+        <h1 className="font-medium mt-5 text-center sm:text-left sm:mt-8 md:text-2xl text-lg dark:text-slate-200">
             {title} ({count} {taskText})
         </h1>
     );

@@ -8,10 +8,5 @@ export function PageUncompletedTasks() {
   const { getTasksByStatus } = useTask();
   const tasks = getTasksByStatus('uncompleted');
 
-  return (
-    <>
-      <StatusTitle title="Uncompleted Tasks" />
-      <TaskListWithActions tasks={tasks} />
-    </>
-  );
+  return <TaskListWithActions tasks={tasks} title="Uncompleted Tasks" />;
 }

@@ -5,6 +5,7 @@ import { LoadingProvider } from '@/contexts/loading/context';
 import { DialogProvider } from '@/contexts/dialog/context';
 import { DirectoryProvider } from '@/contexts/directory/context';
 import { DirectoryDialogProvider } from '@/contexts/directoryDialog/context';
+import { SearchProvider } from '@/contexts/search/context';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export function App() {
@@ -13,12 +14,14 @@ export function App() {
       <LoadingProvider>
         <DirectoryProvider>
           <TaskProvider>
-            <DialogProvider>
-              <DirectoryDialogProvider>
-                <LoadingSpinner />
-                <AppRoutes />
-              </DirectoryDialogProvider>
-            </DialogProvider>
+            <SearchProvider>
+              <DialogProvider>
+                <DirectoryDialogProvider>
+                  <LoadingSpinner />
+                  <AppRoutes />
+                </DirectoryDialogProvider>
+              </DialogProvider>
+            </SearchProvider>
           </TaskProvider>
         </DirectoryProvider>
       </LoadingProvider>

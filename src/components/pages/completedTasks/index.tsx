@@ -8,10 +8,5 @@ export function PageCompletedTasks() {
   const { getTasksByStatus } = useTask();
   const tasks = getTasksByStatus('completed');
 
-  return (
-    <>
-      <StatusTitle title="Completed Tasks" />
-      <TaskListWithActions tasks={tasks} />
-    </>
-  );
+  return <TaskListWithActions tasks={tasks} title="Completed Tasks" />;
 }

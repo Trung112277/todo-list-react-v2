@@ -11,7 +11,7 @@ export function EditDirectoryButton({ onClick }: EditDirectoryButtonProps) {
             type="button"
             onClick={onClick}
             className={cn(
-                "inline-flex items-center justify-center p-2 rounded-md",
+                "inline-flex items-center justify-center  rounded-md",
                 " dark:hover:bg-gray-800",
                 "transition-colors"
             )}
