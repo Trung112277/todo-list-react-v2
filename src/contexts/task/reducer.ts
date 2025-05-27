@@ -7,7 +7,8 @@ export type TaskAction =
   | { type: 'DELETE_TASK'; payload: string }
   | { type: 'DELETE_ALL_TASKS' }
   | { type: 'TOGGLE_TASK_STATUS'; payload: string }
-  | { type: 'TOGGLE_TASK_IMPORTANT'; payload: string };
+  | { type: 'TOGGLE_TASK_IMPORTANT'; payload: string }
+  | { type: 'MOVE_TASKS_TO_MAIN'; payload: string };
 
 export function taskReducer(state: Task[], action: TaskAction): Task[] {
   switch (action.type) {
@@ -35,6 +36,13 @@ export function taskReducer(state: Task[], action: TaskAction): Task[] {
     case 'TOGGLE_TASK_IMPORTANT':
       return state.map((task) =>
         task.id === action.payload ? taskActions.toggleTaskImportant(task) : task
+      );
+
+    case 'MOVE_TASKS_TO_MAIN':
+      return state.map((task) =>
+        task.directoryId === action.payload
+          ? { ...task, directoryId: 'main', updatedAt: new Date() }
+          : task
       );
 
     default:

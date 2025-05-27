@@ -4,6 +4,7 @@ import type { DirectoryAction } from './reducer';
 import { directoryReducer } from './reducer';
 import { getInitialState, saveDirectoriesToStorage } from './helpers';
 import { useDirectoryActions } from './actions';
+import { Dispatch } from 'react';
 
 export interface DirectoryContextType {
   directories: Directory[];
@@ -15,9 +16,14 @@ export interface DirectoryContextType {
 
 const DirectoryContext = createContext<DirectoryContextType | undefined>(undefined);
 
-export function DirectoryProvider({ children }: { children: ReactNode }) {
+interface DirectoryProviderProps {
+  children: ReactNode;
+  taskDispatch?: Dispatch<any>;
+}
+
+export function DirectoryProvider({ children, taskDispatch }: DirectoryProviderProps) {
   const [directories, dispatch] = useReducer(directoryReducer, getInitialState());
-  const actions = useDirectoryActions(dispatch);
+  const actions = useDirectoryActions(dispatch, taskDispatch);
 
   // Create a Map for O(1) directory lookup
   const directoriesMap = useMemo(() => {
