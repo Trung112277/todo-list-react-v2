@@ -45,7 +45,7 @@ export function DeleteDirectory({ directoryId }: DeleteDirectoryProps) {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className='bg-slate-100'>Cancel</AlertDialogCancel>
           <AlertDialogAction onClick={handleDelete} className="w-fit">Confirm</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

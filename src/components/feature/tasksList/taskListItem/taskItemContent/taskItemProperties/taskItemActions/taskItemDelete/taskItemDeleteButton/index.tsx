@@ -7,10 +7,10 @@ export function TaskItemDeleteButton() {
     <AlertDialogTrigger asChild>
       <Button
         variant="ghost"
-        className="p-0 h-8 hover:bg-transparent"
+        className="p-0 h-8 hover:bg-transparent hover:text-red-500"
       >
         <BsTrash3Fill 
-          className="hover:text-red-500 w-4 h-4" 
+          className=" w-4 h-4" 
           style={{ width: '20px', height: '20px' }} 
         />
       </Button>

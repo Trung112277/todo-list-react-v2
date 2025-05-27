@@ -25,7 +25,7 @@ export function TaskItemDeleteContent() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className='bg-slate-100'>Cancel</AlertDialogCancel>
           <AlertDialogAction onClick={handleDelete} className="w-fit">
             Delete
           </AlertDialogAction>

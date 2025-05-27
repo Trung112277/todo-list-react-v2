@@ -35,9 +35,9 @@ export function ButtonDeleteAllTasks() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className='bg-slate-100'>Cancel</AlertDialogCancel>
           <AlertDialogAction 
-            className="w-fit bg-red-500 hover:bg-red-600"
+            className="w-fit bg-primary"
             onClick={handleDeleteAll}
           >
             Confirm
