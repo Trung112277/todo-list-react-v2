@@ -8,7 +8,8 @@ export type TaskAction =
   | { type: 'DELETE_ALL_TASKS' }
   | { type: 'TOGGLE_TASK_STATUS'; payload: string }
   | { type: 'TOGGLE_TASK_IMPORTANT'; payload: string }
-  | { type: 'MOVE_TASKS_TO_MAIN'; payload: string };
+  | { type: 'MOVE_TASKS_TO_MAIN'; payload: string }
+  | { type: 'SORT_TASKS'; payload: Task[] };
 
 export function taskReducer(state: Task[], action: TaskAction): Task[] {
   switch (action.type) {
@@ -44,6 +45,9 @@ export function taskReducer(state: Task[], action: TaskAction): Task[] {
           ? { ...task, directoryId: 'main', updatedAt: new Date() }
           : task
       );
+
+    case 'SORT_TASKS':
+      return action.payload;
 
     default:
       return state;

@@ -17,6 +17,7 @@ export const DescriptionTextarea = forwardRef<HTMLTextAreaElement, DescriptionTe
         <Textarea 
           ref={ref}
           className={error ? "border-red-500" : ""}
+          placeholder='e.g, study for the test'
           {...props}
         />
         {error && (

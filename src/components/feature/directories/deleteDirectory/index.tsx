@@ -24,7 +24,6 @@ export function DeleteDirectory({ directoryId }: DeleteDirectoryProps) {
 
   const handleDelete = () => {
     deleteDirectory(directoryId);
-    // Nếu đang ở cùng trang đang xóa, chuyển về trang home
     if (location.pathname.startsWith(`/directory/${directoryId}`)) {
       window.location.href = '/';
     }

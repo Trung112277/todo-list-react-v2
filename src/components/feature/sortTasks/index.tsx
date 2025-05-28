@@ -5,19 +5,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useSortTasks } from '@/hooks/useSortTasks';
+import { sortOptions } from '@/types/sortTask';
 
 export function SortTasks() {
+  const { currentSort, handleSort } = useSortTasks();
+
   return (
-    <Select>
+    <Select value={currentSort} onValueChange={handleSort}>
       <SelectTrigger className="w-[200px]">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
       <SelectContent className="border-none">
-        <SelectItem value="order-added">Order added</SelectItem>
-        <SelectItem value="erlier">Earlier first</SelectItem>
-        <SelectItem value="later">Later first</SelectItem>
-        <SelectItem value="completed">Completed first</SelectItem>
-        <SelectItem value="uncompleted">Uncompleted first</SelectItem>
+        {sortOptions.map(({ value, label }) => (
+          <SelectItem key={value} value={value}>
+            {label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );
