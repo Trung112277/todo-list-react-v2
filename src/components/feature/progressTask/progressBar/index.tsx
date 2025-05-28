@@ -5,5 +5,11 @@ interface ProgressBarProps {
 }
 
 export function ProgressBar({ value }: ProgressBarProps) {
-  return <Progress value={value} />;
+  const percentage = Math.round(value);
+  
+  return (
+    <div className="w-full">
+      <Progress value={percentage} className="h-2" />
+    </div>
+  );
 }

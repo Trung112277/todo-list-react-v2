@@ -1,8 +1,14 @@
+import { useProgress } from '@/contexts/progress/context';
+
 export function AllTasksProgress() {
+  const { allTasksProgress } = useProgress();
+
   return (
     <div className="flex items-center justify-between">
-      <span>All tasks</span>
-      <span>1/4</span>
+      <h3 className="text-sm font-medium">All Tasks</h3>
+      <span className="text-sm text-muted-foreground">
+        {allTasksProgress.completed}/{allTasksProgress.total}
+      </span>
     </div>
   );
 }

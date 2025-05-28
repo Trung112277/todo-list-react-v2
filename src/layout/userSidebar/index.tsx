@@ -10,6 +10,7 @@ export function UserSidebar() {
       <div className="p-5 flex flex-col h-full max-h-full overflow-y-auto ">
         <HeaderUserSidebar />
         <SwitchMode />
+        <hr className="mb-5 border-t-2 border-gray-300 " />
         <ProgressTask />
         <hr className="my-5 border-t-2 border-gray-300 " />
         <TodayTasks />
