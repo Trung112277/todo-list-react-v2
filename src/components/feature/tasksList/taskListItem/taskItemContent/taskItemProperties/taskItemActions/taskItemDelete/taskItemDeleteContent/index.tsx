@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useTaskItemDelete } from '@/contexts/taskItemDelete/context';
 import { TaskItemDeleteButton } from '../taskItemDeleteButton';
+import { SubTitle } from '@/components/common/title/subTitle';
 
 export function TaskItemDeleteContent() {
   const { handleDelete } = useTaskItemDelete();
@@ -18,7 +19,9 @@ export function TaskItemDeleteContent() {
     <AlertDialog>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            <SubTitle>Are you sure?</SubTitle>
+          </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
             task.

@@ -13,7 +13,7 @@ export const InputForm = forwardRef<HTMLInputElement, InputFormProps & React.Inp
   ({ title, placeholder, type, error, ...props }, ref) => {
     return (
       <div className="space-y-2">
-        <Label className="text-lg text-gray-600">
+        <Label className="text-lg text-gray-600 ">
           {title}
         </Label>
         <Input 

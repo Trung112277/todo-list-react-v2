@@ -9,3 +9,4 @@ export function PageAllTasks() {
 
   return <TaskListWithActions tasks={tasks} title="All Tasks" />;
 }
+  

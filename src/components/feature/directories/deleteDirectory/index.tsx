@@ -40,7 +40,7 @@ export function DeleteDirectory({ directoryId }: DeleteDirectoryProps) {
             <SubTitle>Are you sure?</SubTitle>
           </AlertDialogTitle>
           <AlertDialogDescription className="text-lg text-gray-600">
-            This directory and all its tasks will be deleted.
+            This directory will be deleted.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

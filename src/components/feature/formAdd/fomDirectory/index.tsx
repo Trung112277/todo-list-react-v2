@@ -73,7 +73,7 @@ export function FormDirectory({ buttonText, initialName = '', directoryId, onSuc
         onChange={(e) => setName(e.target.value)}
         required
       />
-      <ButtonForm type="submit" className="w-fit">{buttonText}</ButtonForm>
+      <ButtonForm type="submit" className="w-fit dark:text-slate-200">{buttonText}</ButtonForm>
     </form>
   );
 }

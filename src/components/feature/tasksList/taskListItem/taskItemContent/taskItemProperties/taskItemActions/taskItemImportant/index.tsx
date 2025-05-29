@@ -42,14 +42,14 @@ export function TaskItemImportant() {
       variant="ghost"
       onClick={handleClick}
       className={cn(
-        "p-0 h-8 hover:bg-transparent"
+        "p-0 h-8 hover:bg-transparent "
       )}
     >
       <IoStar
         className={cn(
-          "w-4 h-4",
+          "w-4 h-4 dark:text-slate-200",
           task.isImportant 
-            ? "text-red-500" 
+            ? "text-red-500 dark:text-red-500" 
             : isFirstTask 
               ? "text-white" 
               : "text-gray-500"

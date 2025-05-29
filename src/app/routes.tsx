@@ -5,7 +5,7 @@ import { PageImportantTasks } from '../components/pages/importantTasks';
 import { PageTodayTasks } from '../components/pages/todayTasks';
 import { PageUncompletedTasks } from '../components/pages/uncompletedTasks/index';
 import { MainLayout } from '../layout/mainLayout';
-import DirectoryPage from '../components/pages/directoryTasks/DirectoryPage';
+import DirectoriesPage from '../components/pages/directoryTasks/directoriesPage';
 
 export function AppRoutes() {
   return (
@@ -16,7 +16,7 @@ export function AppRoutes() {
         <Route path="important" element={<PageImportantTasks />} />
         <Route path="completed" element={<PageCompletedTasks />} />
         <Route path="uncompleted" element={<PageUncompletedTasks />} />
-        <Route path="directory/:directoryId" element={<DirectoryPage />} />
+        <Route path="directory/:directoryId" element={<DirectoriesPage />} />
       </Route>
     </Routes>
   );

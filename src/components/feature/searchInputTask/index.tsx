@@ -44,7 +44,7 @@ export function SearchInputTask() {
       <Input
         type="search"
         placeholder="Search task"
-        className="pr-8 [&::-webkit-search-cancel-button]:hidden text-md text-slate-700 font-medium placeholder:text-gray-400 placeholder:font-normal"
+        className="pr-8 [&::-webkit-search-cancel-button]:hidden text-md text-slate-700 dark:text-slate-200 font-medium placeholder:text-gray-400 placeholder:font-normal"
         value={inputValue}
         onChange={handleSearch}
       />

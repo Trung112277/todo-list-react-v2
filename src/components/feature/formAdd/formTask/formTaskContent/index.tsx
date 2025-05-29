@@ -48,7 +48,7 @@ export function TaskForm() {
         onChange={handleImportantChange}
         error={errors.isImportant?.message}
       />
-      <ButtonForm >
+      <ButtonForm className='dark:text-slate-200'>
         {taskId ? FORM_TITLES.EDIT_TASK : FORM_TITLES.ADD_TASK}
       </ButtonForm>
     </form>

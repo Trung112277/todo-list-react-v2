@@ -8,28 +8,31 @@ import { SearchProvider } from '@/contexts/search/context';
 import { DialogProvider } from '@/contexts/dialog/context';
 import { DirectoryDialogProvider } from '@/contexts/directoryDialog/context';
 import { ViewTasksProvider } from '@/contexts/viewTasks/context';
+import { ThemeProvider } from '@/contexts/theme/context';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export function App() {
   return (
     <ErrorProvider>
       <LoadingProvider>
-        <DirectoryProvider>
-          <TaskProvider>
-            <ProgressProvider>
-              <SearchProvider>
-                <DialogProvider>
-                  <DirectoryDialogProvider>
-                    <ViewTasksProvider>
-                      <LoadingSpinner />
-                      <AppRoutes />
-                    </ViewTasksProvider>
-                  </DirectoryDialogProvider>
-                </DialogProvider>
-              </SearchProvider>
-            </ProgressProvider>
-          </TaskProvider>
-        </DirectoryProvider>
+        <ThemeProvider>
+          <DirectoryProvider>
+            <TaskProvider>
+              <ProgressProvider>
+                <SearchProvider>
+                  <DialogProvider>
+                    <DirectoryDialogProvider>
+                      <ViewTasksProvider>
+                        <LoadingSpinner />
+                        <AppRoutes />
+                      </ViewTasksProvider>
+                    </DirectoryDialogProvider>
+                  </DialogProvider>
+                </SearchProvider>
+              </ProgressProvider>
+            </TaskProvider>
+          </DirectoryProvider>
+        </ThemeProvider>
       </LoadingProvider>
     </ErrorProvider>
   );

@@ -42,13 +42,13 @@ function TaskItemContentComponent() {
   return (
     <TaskItemContentProvider task={task}>
       <article className={cn(
-        "rounded-lg p-3 sm:p-4 flex text-left transition hover:shadow-lg hover:shadow-slate-300",
+        "rounded-lg p-3 sm:p-4 flex text-left transition hover:shadow-lg hover:shadow-slate-300 dark:hover:shadow-transparent",
         view === 'grid' 
           ? "flex-col h-52 sm:h-64" 
           : "flex-row h-[150px]",
         isFirstTask 
           ? "bg-primary text-white dark:bg-primary dark:text-white" 
-          : "bg-slate-100 dark:bg-slate-800 dark:hover:shadow-transparent"
+          : "bg-slate-100 dark:bg-slate-800"
       )}>
         <TaskItemMain view={view} />
         <TaskItemProperties view={view} />

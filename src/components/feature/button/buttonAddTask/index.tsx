@@ -11,7 +11,7 @@ export function ButtonAddTask() {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => open ? openDialog() : closeDialog()}>
       <DialogTrigger asChild>
-        <Button>Add new task</Button>
+        <Button className='dark:text-slate-200'>Add new task</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
