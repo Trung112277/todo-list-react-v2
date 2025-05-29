@@ -32,7 +32,7 @@ export function TaskDescription() {
 
   return (
     <p className={cn(
-      "text-sm line-clamp-2",
+      "text-sm sm:line-clamp-2 line-clamp-1",
       isFirstTask 
         ? "text-white/90" 
         : "text-slate-600 dark:text-slate-400"

@@ -13,10 +13,10 @@ function TaskItemPropertiesComponent({ view }: TaskItemPropertiesProps) {
 
   return (
     <div className={cn(
-      "flex gap-4 justify-between items-center",
+      "flex gap-5 sm:gap-3 justify-between items-center",
       view === 'grid' 
         ? "border-dashed border-slate-200 dark:border-slate-700/[.3] border-t-2 w-full pt-4 mt-4" 
-        : "w-[20%] flex justify-end"
+        : "sm:w-[20%] w-fit flex justify-end"
     )}>
       <TaskItemStatus isCompleted={task.isCompleted} />
       <TaskItemActions />

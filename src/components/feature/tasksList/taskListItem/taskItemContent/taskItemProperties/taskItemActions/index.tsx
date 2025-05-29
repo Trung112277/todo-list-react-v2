@@ -4,7 +4,7 @@ import { TaskItemImportant } from './taskItemImportant';
 
 export function TaskItemActions() {
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-1 lg:gap-3 items-center">
       <TaskItemImportant />
       <TaskItemEdit />
       <TaskItemDelete />

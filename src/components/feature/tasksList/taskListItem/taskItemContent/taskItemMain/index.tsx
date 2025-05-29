@@ -15,7 +15,7 @@ function TaskItemMainComponent({ view }: TaskItemMainProps) {
   return (
     <div className={cn(
       "flex flex-col flex-1 gap-2",
-      view === 'list' && "w-[80%] pr-5"
+      view === 'list' && "sm:w-[80%] w-[60%] sm:pr-5 pr-2"
     )}>
       <TaskName />
       <TaskDescription />

@@ -13,7 +13,7 @@ export function SortTasks() {
 
   return (
     <Select value={currentSort} onValueChange={handleSort}>
-      <SelectTrigger className="w-[200px]">
+      <SelectTrigger className="sm:max-w-[200px] max-w-[170px] text-md">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
       <SelectContent className="border-none">

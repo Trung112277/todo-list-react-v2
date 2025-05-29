@@ -9,29 +9,34 @@ import { DialogProvider } from '@/contexts/dialog/context';
 import { DirectoryDialogProvider } from '@/contexts/directoryDialog/context';
 import { ViewTasksProvider } from '@/contexts/viewTasks/context';
 import { ThemeProvider } from '@/contexts/theme/context';
+import { SidebarProvider } from '@/contexts/sidebar/context';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { SidebarOverlay } from '@/components/common/sidebarOverlay';
 
 export function App() {
   return (
     <ErrorProvider>
       <LoadingProvider>
         <ThemeProvider>
-          <DirectoryProvider>
-            <TaskProvider>
-              <ProgressProvider>
-                <SearchProvider>
-                  <DialogProvider>
-                    <DirectoryDialogProvider>
-                      <ViewTasksProvider>
-                        <LoadingSpinner />
-                        <AppRoutes />
-                      </ViewTasksProvider>
-                    </DirectoryDialogProvider>
-                  </DialogProvider>
-                </SearchProvider>
-              </ProgressProvider>
-            </TaskProvider>
-          </DirectoryProvider>
+          <SidebarProvider>
+            <DirectoryProvider>
+              <TaskProvider>
+                <ProgressProvider>
+                  <SearchProvider>
+                    <DialogProvider>
+                      <DirectoryDialogProvider>
+                        <ViewTasksProvider>
+                          <LoadingSpinner />
+                          <SidebarOverlay />
+                          <AppRoutes />
+                        </ViewTasksProvider>
+                      </DirectoryDialogProvider>
+                    </DialogProvider>
+                  </SearchProvider>
+                </ProgressProvider>
+              </TaskProvider>
+            </DirectoryProvider>
+          </SidebarProvider>
         </ThemeProvider>
       </LoadingProvider>
     </ErrorProvider>

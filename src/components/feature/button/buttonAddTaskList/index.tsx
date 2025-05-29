@@ -23,7 +23,7 @@ export function ButtonAddTaskList() {
           data-add-task
           className={cn(
             "bg-transparent border-2 border-slate-300 shadow-none text-slate-400 w-full rounded-lg border-dashed transition hover:bg-slate-300 hover:text-slate-500 dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-300",
-            view === 'grid' ? "h-52 sm:h-64" : "h-[150px]"
+            view === 'grid' ? "h-52 sm:h-64" : "sm:h-[150px] h-[120px]"
           )}
         >
           Add new task

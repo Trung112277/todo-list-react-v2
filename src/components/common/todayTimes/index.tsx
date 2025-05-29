@@ -5,7 +5,7 @@ export function TodayTimes() {
   const day = today.getDate();
 
   return (
-    <time className="-translate-x-1/2" dateTime={today.toISOString()}>
+    <time dateTime={today.toISOString()}>
       {year}, {month} {day}
     </time>
   );

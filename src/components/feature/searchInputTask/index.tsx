@@ -39,12 +39,12 @@ export function SearchInputTask() {
   }, [setSearchQuery, navigate, location.search]);
 
   return (
-    <div className="relative w-full max-w-[300px]">
+    <div className="relative w-full sm:max-w-[300px] w-full">
       <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
         placeholder="Search task"
-        className="pr-8 [&::-webkit-search-cancel-button]:hidden text-md text-slate-700 dark:text-slate-200 font-medium placeholder:text-gray-400 placeholder:font-normal"
+        className="pr-8 [&::-webkit-search-cancel-button]:hidden  text-md text-slate-700 dark:text-slate-200 font-medium placeholder:text-gray-400 placeholder:font-normal"
         value={inputValue}
         onChange={handleSearch}
       />
