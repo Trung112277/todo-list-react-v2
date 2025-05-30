@@ -15,31 +15,31 @@ import { SidebarOverlay } from '@/components/common/sidebarOverlay';
 
 export function App() {
   return (
-    <ErrorProvider>
-      <LoadingProvider>
-        <ThemeProvider>
-          <SidebarProvider>
+    <ThemeProvider>
+      <ErrorProvider>
+        <LoadingProvider>
+          <TaskProvider>
             <DirectoryProvider>
-              <TaskProvider>
+              <ViewTasksProvider>
                 <ProgressProvider>
                   <SearchProvider>
                     <DialogProvider>
                       <DirectoryDialogProvider>
-                        <ViewTasksProvider>
+                        <SidebarProvider>
                           <LoadingSpinner />
                           <SidebarOverlay />
                           <AppRoutes />
-                        </ViewTasksProvider>
+                        </SidebarProvider>
                       </DirectoryDialogProvider>
                     </DialogProvider>
                   </SearchProvider>
                 </ProgressProvider>
-              </TaskProvider>
+              </ViewTasksProvider>
             </DirectoryProvider>
-          </SidebarProvider>
-        </ThemeProvider>
-      </LoadingProvider>
-    </ErrorProvider>
+          </TaskProvider>
+        </LoadingProvider>
+      </ErrorProvider>
+    </ThemeProvider>
   );
 }
 
