@@ -39,7 +39,7 @@ export function SearchInputTask() {
   }, [setSearchQuery, navigate, location.search]);
 
   return (
-    <div className="relative w-full sm:max-w-[300px] w-full">
+    <div className="relative sm:max-w-[300px] w-full">
       <Search className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
