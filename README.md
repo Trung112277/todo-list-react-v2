@@ -57,7 +57,7 @@ A modern, feature-rich todo list application built with React, TypeScript, and T
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/todo-list-react-v2.git
+git clone https://github.com/Trung112277/todo-list-react-v2.git
 cd todo-list-react-v2
 ```
 
