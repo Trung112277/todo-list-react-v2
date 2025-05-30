@@ -8,9 +8,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+// Get the base URL from the current location
+const baseUrl = import.meta.env.PROD ? '/todo-list-react-v2' : '';
+
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={baseUrl}>
       <App />
     </BrowserRouter>
   </StrictMode>

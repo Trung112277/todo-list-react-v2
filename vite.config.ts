@@ -7,7 +7,7 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: './node_modules/.vite/todo-list-react-v2',
-  base: process.env.NODE_ENV === 'production' ? '/todo-list-react-v2/' : '/',
+  base: '/todo-list-react-v2/',
   server: {
     port: 4200,
     host: 'localhost',
@@ -28,6 +28,7 @@ export default defineConfig(() => ({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    sourcemap: true,
   },
   test: {
     watch: false,
