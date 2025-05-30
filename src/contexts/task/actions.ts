@@ -1,9 +1,10 @@
 import { Task } from '@/types/task';
-import { useError } from '../error/context';
 import { useLoading } from '../loading/context';
 
-export const useTaskActions = (dispatch: React.Dispatch<any>) => {
-  const { setError } = useError();
+export const useTaskActions = (
+  dispatch: React.Dispatch<any>,
+  setError: (message: string) => void
+) => {
   const { setIsLoading } = useLoading();
 
   const addTask = async (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => {

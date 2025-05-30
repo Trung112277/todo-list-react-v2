@@ -1,16 +1,19 @@
 import { createContext, useContext, useReducer, ReactNode, useEffect, useMemo } from 'react';
 import { Task, TaskContextType } from '@/types/task';
 import { taskReducer } from './reducer';
-import { useError } from '../error/context';
 import { getInitialState, saveTasksToStorage, STORAGE_KEY } from './helpers';
 import { useTaskActions } from './actions';
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
-export function TaskProvider({ children }: { children: ReactNode }) {
+interface TaskProviderProps {
+  children: ReactNode;
+  setError: (message: string) => void;
+}
+
+export function TaskProvider({ children, setError }: TaskProviderProps) {
   const [tasks, dispatch] = useReducer(taskReducer, getInitialState());
-  const { setError } = useError();
-  const actions = useTaskActions(dispatch);
+  const actions = useTaskActions(dispatch, setError);
 
   // Create a Map for O(1) task lookup
   const tasksMap = useMemo(() => {
